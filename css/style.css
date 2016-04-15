@@ -1,1 +1,11 @@
 /* 575 boilerplate style.css */
+
+/*Map*/
+.blue {
+	fill: "blue";
+}
+
+.map {
+border: 3px solid #999;
+	margin: 10px 0 0 20px;
+}
