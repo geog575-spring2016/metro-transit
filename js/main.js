@@ -12,18 +12,19 @@ function setMap(){
 		.attr("height", height);
 
 	var projection = d3.geo.azimuthalEquidistant()
-		.center([0, 44.9686414])
-		.rotate([93.27,0,0])
-		.scale(200000)
-		.translate([width / 2, height / 2]);
+        .center([0, 44.51])
+        .rotate([93.73, 0, 0])
+        .scale(3078.79)
+        .translate([width / 2, height / 2]);
 
 	var path = d3.geo.path()
 		.projection(projection);
 
     //use queue.js to parallelize asynchronous data loading
     d3_queue.queue()
-        .defer(d3.csv, "../data/___.csv") //load attributes from csv
-        .defer(d3.json, "../data/topojsons/BlueLine.topojson")
+        .defer(d3.csv, "data/TransitData.csv") //load attributes from csv
+        .defer(d3.json, "data/topojsons/mncensustracts.topojson")
+        .defer(d3.json, "data/topojsons/BlueLine.topojson")
         // .defer(d3.json, "data/topojsons/BlueLineExt.topojson")
         // .defer(d3.json, "data/topojsons/GoldLine.topojson")
         // .defer(d3.json, "data/topojsons/GreenLine.topojson")
@@ -34,9 +35,10 @@ function setMap(){
         // .defer(d3.json, "data/topojsons/RedLineExt.topojson")
         .await(callback);
 
-        function callback(error, csvData, blueline){
+        function callback(error, csvData, censustracts, blueline){
         //translate europe TopoJSON
-        var blueLine = topojson.feature(blueline, blueline.objects.BlueLine);
+        var censusTracts = topojson.feature(censustracts, censustracts.objects.mncensustracts).features;
+            blueLine = topojson.feature(blueline, blueline.objects.BlueLine);
         	// blueLineExt = topojson.feature(bluelineext, bluelineext.objects.BlueLineExt),
         	// goldLine = topojson.feature(goldline, goldline.objects.GoldLine),
         	// greenLine = topojson.feature(greenline, greenline.objects.GreenLine),
@@ -46,7 +48,10 @@ function setMap(){
         	// redLine = topojson.feature(redline, redline.objects.RedLine),
         	// redLineExt = topojson.feature(redlineext, redlineext.objects.RedLineExt);
 
-        console.log(blueline)
+        var census = map.append("path")
+            .datum(censusTracts)
+            .attr("class", "census")
+            .attr("d", path);
 
         //add Blue Line to map
         var blue = map.append("path")
@@ -54,3 +59,4 @@ function setMap(){
             .attr("class", "blue")
             .attr("d", path);
     };
+};
