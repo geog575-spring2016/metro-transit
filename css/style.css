@@ -51,13 +51,13 @@
 }
 
 .orange {
-	stroke: orange;
+	stroke: #ff8533;
 	fill: none;
 	stroke-width: 2;
 }
 
 .gold {
-	stroke: yellow;
+	stroke: gold;
 	fill: none;
 	stroke-width: 2;
 }
