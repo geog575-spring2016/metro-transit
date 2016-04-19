@@ -1,8 +1,71 @@
 /* 575 boilerplate style.css */
 
 /*Map*/
+.tracts {
+	fill: none;
+	stroke: #737373;
+	stroke-width: 0.3;
+
+}
+
+.hydro {
+	fill: #ccf5ff;
+	/*stroke: #0033cc;*/
+}
+
 .blue {
-	fill: "blue";
+	stroke: blue;
+	fill: none;
+	stroke-width: 2;
+}
+
+.blueext {
+	stroke: blue;
+	stroke-style: dashed;
+	fill: none;
+	stroke-width: 2;
+}
+
+.green {
+	stroke: green;
+	fill: none;
+	stroke-width: 2;
+}
+
+.greenext {
+	stroke: green;
+	fill: none;
+	stroke-width: 2;
+}
+
+.red {
+	stroke: red;
+	fill: none;
+	stroke-width: 2;
+}
+
+.redext {
+	stroke: red;
+	fill: none;
+	stroke-width: 2;
+}
+
+.orange {
+	stroke: orange;
+	fill: none;
+	stroke-width: 2;
+}
+
+.gold {
+	stroke: yellow;
+	fill: none;
+	stroke-width: 2;
+}
+
+.northstar {
+	stroke: black;
+	fill: none;
+	stroke-width: 2;
 }
 
 .map {
