@@ -2,8 +2,8 @@
 window.onload = setMap();
 
 function setMap(){
-	var width = window.innerWidth * 0.5,
-		height = 600;
+	var width = window.innerWidth * 0.9,
+		height = 700;
 
 	var map = d3.select("body")
 		.append("svg")
@@ -12,9 +12,9 @@ function setMap(){
 		.attr("height", height);
 
 	var projection = d3.geo.azimuthalEquidistant()
-        .center([0, 44.89])
-        .rotate([93.20, 0, 0])
-        .scale(65000)
+        .center([0, 44.886])
+        .rotate([93.24, 0, 0])
+        .scale(78000)
         .translate([width / 2, height / 2]);
 
 	var path = d3.geo.path()
@@ -23,7 +23,7 @@ function setMap(){
     //use queue.js to parallelize asynchronous data loading
     d3_queue.queue()
         .defer(d3.csv, "data/TransitData.csv") //load attributes from csv
-        .defer(d3.json, "data/topojsons/MNCensusTracts.topojson")
+        .defer(d3.json, "data/topojsons/MetroCensusTracts.topojson")
         .defer(d3.json, "data/topojsons/LakesAndRivers.topojson")
         .defer(d3.json, "data/topojsons/BlueLine.topojson")
         .defer(d3.json, "data/topojsons/BlueLineExt.topojson")
@@ -43,7 +43,7 @@ function setMap(){
 
         function callback(error, transitData, censustracts, lakes, blueline, bluelineext, goldline, greenline, greenlineext, northstarline, orangeline, redline, redlineext, bluestations, greenstations, redstations, northstarstations, sharedstations){
         //translate europe TopoJSON
-        var censusTracts = topojson.feature(censustracts, censustracts.objects.MNCensusTracts),
+        var censusTracts = topojson.feature(censustracts, censustracts.objects.MetroCensusTracts),
             lakesAndRivers = topojson.feature(lakes, lakes.objects.LakesAndRivers),
             blueLine = topojson.feature(blueline, blueline.objects.BlueLine),
         	blueLineExt = topojson.feature(bluelineext, bluelineext.objects.BlueLineExt),
@@ -60,12 +60,8 @@ function setMap(){
             northStarStations = topojson.feature(northstarstations, northstarstations.objects.NorthStarStations),
             sharedStations = topojson.feature(sharedstations, sharedstations.objects.SharedStations);
 
-        // var census = map.append("path")
-        //     .datum(censusTracts)
-        //     .attr("class", "census")
-        //     .attr("d", path);
 
-        //add Blue Line to map
+        //add geojsons to map
         var tracts = map.append("path")
             .datum(censusTracts)
             .attr("class", "tracts")
@@ -131,10 +127,22 @@ function setMap(){
             .attr("class", "redext")
             .attr("d", path);
 
-        // var bluestat = map.append("path")
-        //     .datum(blueStations)
-        //     .attr("class", "bluestat")
-        //     .attr("d", path);             
+        var bluestat = map.selectAll(".bluestat")
+            .data(blueStations.features)
+            .enter()
+            .append("path")
+            .attr("class", function(d){
+                return "bluestat " + d.properties.StationID;
+            })
+            .attr("d", path);   
+        // var regions = map.selectAll(".regions")
+        //     .data(franceRegions)
+        //     .enter()
+        //     .append("path")
+        //     .attr("class", function(d){
+        //         return "regions " + d.properties.adm1_code;
+        //     })
+        //     .attr("d", path)          
 
         // var greenstat = map.append("path")
         //     .datum(greenStations)
