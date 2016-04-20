@@ -127,42 +127,52 @@ function setMap(){
             .attr("class", "redext")
             .attr("d", path);
 
+
+
         var bluestat = map.selectAll(".bluestat")
             .data(blueStations.features)
             .enter()
             .append("path")
             .attr("class", function(d){
-                return "bluestat " + d.properties.StationID;
+                return "bluestat " + d.StationID;
             })
-            .attr("d", path);   
-        // var regions = map.selectAll(".regions")
-        //     .data(franceRegions)
-        //     .enter()
-        //     .append("path")
-        //     .attr("class", function(d){
-        //         return "regions " + d.properties.adm1_code;
-        //     })
-        //     .attr("d", path)          
+            .attr("d", path);
+            
+        var greenstat = map.selectAll(".greenstat")
+            .data(greenStations.features)
+            .enter()
+            .append("path")
+            .attr("class", function(d){
+                return "greenstat " + d.StationID;
+            })
+            .attr("d", path);  
 
-        // var greenstat = map.append("path")
-        //     .datum(greenStations)
-        //     .attr("class", "greenstat")
-        //     .attr("d", path);        
+        var redstat = map.selectAll(".redstat")
+            .data(redStations.features)
+            .enter()
+            .append("path")
+            .attr("class", function(d){
+                return "redstat " + d.StationID;
+            })
+            .attr("d", path);  
 
-        // var redstat = map.append("path")
-        //     .datum(redStations)
-        //     .attr("class", "redstat")
-        //     .attr("d", path);        
+        var northstarstat = map.selectAll(".northstarstat")
+            .data(northStarStations.features)
+            .enter()
+            .append("path")
+            .attr("class", function(d){
+                return "northstarstat " + d.StationID;
+            })
+            .attr("d", path);  
 
-        // var northstarstat = map.append("path")
-        //     .datum(northStarStations)
-        //     .attr("class", "northstarstat")
-        //     .attr("d", path);  
-
-        // var sharedstat = map.append("path")
-        //     .datum(sharedStations)
-        //     .attr("class", "sharedstat")
-        //     .attr("d", path);         
+        var sharedstat = map.selectAll(".sharedstat")
+            .data(sharedStations.features)
+            .enter()
+            .append("path")
+            .attr("class", function(d){
+                return "sharedstat " + d.StationID;
+            })
+            .attr("d", path);     
 
     };
 };
