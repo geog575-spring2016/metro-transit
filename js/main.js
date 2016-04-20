@@ -13,7 +13,7 @@ function setMap(){
 
 	var projection = d3.geo.azimuthalEquidistant()
         .center([0, 44.89])
-        .rotate([93.23, 0, 0])
+        .rotate([93.20, 0, 0])
         .scale(65000)
         .translate([width / 2, height / 2]);
 
@@ -34,9 +34,14 @@ function setMap(){
         .defer(d3.json, "data/topojsons/OrangeLine.topojson")
         .defer(d3.json, "data/topojsons/RedLine.topojson")
         .defer(d3.json, "data/topojsons/RedLineExt.topojson")
+        .defer(d3.json, "data/topojsons/BlueStations.topojson")
+        .defer(d3.json, "data/topojsons/GreenStations.topojson")
+        .defer(d3.json, "data/topojsons/RedStations.topojson")
+        .defer(d3.json, "data/topojsons/NorthStarStations.topojson")
+        .defer(d3.json, "data/topojsons/SharedStations.topojson")
         .await(callback);
 
-        function callback(error, transitData, censustracts, lakes, blueline, bluelineext, goldline, greenline, greenlineext, northstarline, orangeline, redline, redlineext){
+        function callback(error, transitData, censustracts, lakes, blueline, bluelineext, goldline, greenline, greenlineext, northstarline, orangeline, redline, redlineext, bluestations, greenstations, redstations, northstarstations, sharedstations){
         //translate europe TopoJSON
         var censusTracts = topojson.feature(censustracts, censustracts.objects.MNCensusTracts),
             lakesAndRivers = topojson.feature(lakes, lakes.objects.LakesAndRivers),
@@ -48,7 +53,12 @@ function setMap(){
         	northStarLine = topojson.feature(northstarline, northstarline.objects.NorthStarLine),
         	orangeLine = topojson.feature(orangeline, orangeline.objects.OrangeLine)
         	redLine = topojson.feature(redline, redline.objects.RedLine),
-        	redLineExt = topojson.feature(redlineext, redlineext.objects.RedLineExt);
+        	redLineExt = topojson.feature(redlineext, redlineext.objects.RedLineExt),
+            blueStations = topojson.feature(bluestations, bluestations.objects.BlueStations),
+            greenStations = topojson.feature(greenstations, greenstations.objects.GreenStations),
+            redStations = topojson.feature(redstations, redstations.objects.RedStations),
+            northStarStations = topojson.feature(northstarstations, northstarstations.objects.NorthStarStations),
+            sharedStations = topojson.feature(sharedstations, sharedstations.objects.SharedStations);
 
         // var census = map.append("path")
         //     .datum(censusTracts)
@@ -91,6 +101,16 @@ function setMap(){
             .attr("class", "greenext")
             .attr("d", path);
 
+        var northstar3 = map.append("path")
+            .datum(northStarLine)
+            .attr("class", "northstar3")
+            .attr("d", path);
+
+        var northstar2 = map.append("path")
+            .datum(northStarLine)
+            .attr("class", "northstar2")
+            .attr("d", path);
+
         var northstar = map.append("path")
             .datum(northStarLine)
             .attr("class", "northstar")
@@ -111,6 +131,30 @@ function setMap(){
             .attr("class", "redext")
             .attr("d", path);
 
+        // var bluestat = map.append("path")
+        //     .datum(blueStations)
+        //     .attr("class", "bluestat")
+        //     .attr("d", path);             
+
+        // var greenstat = map.append("path")
+        //     .datum(greenStations)
+        //     .attr("class", "greenstat")
+        //     .attr("d", path);        
+
+        // var redstat = map.append("path")
+        //     .datum(redStations)
+        //     .attr("class", "redstat")
+        //     .attr("d", path);        
+
+        // var northstarstat = map.append("path")
+        //     .datum(northStarStations)
+        //     .attr("class", "northstarstat")
+        //     .attr("d", path);  
+
+        // var sharedstat = map.append("path")
+        //     .datum(sharedStations)
+        //     .attr("class", "sharedstat")
+        //     .attr("d", path);         
 
     };
 };

@@ -5,70 +5,116 @@
 	fill: none;
 	stroke: #737373;
 	stroke-width: 0.3;
-
 }
 
 .hydro {
-	fill: #ccf5ff;
+	fill: #ccffeb;
 	/*stroke: #0033cc;*/
 }
 
 .blue {
-	stroke: blue;
+	stroke: #0053A0;
 	fill: none;
+	stroke-width: 2.5;
+}
+
+.bluestat {
+	stroke: #0053A0;
 	stroke-width: 2;
+	fill: white;
 }
 
 .blueext {
-	stroke: blue;
-	stroke-style: dashed;
+	stroke: #0053A0;
 	fill: none;
-	stroke-width: 2;
+	stroke-width: 2.5;
+	stroke-dasharray: 7,5;
 }
 
 .green {
-	stroke: green;
+	stroke: #028244;
 	fill: none;
+	stroke-width: 2.5;
+}
+
+.greenstat {
+	stroke: #028244;
 	stroke-width: 2;
+	fill: white;
 }
 
 .greenext {
-	stroke: green;
+	stroke: #028244;
 	fill: none;
-	stroke-width: 2;
+	stroke-width: 2.5;
+	stroke-dasharray: 7,5;
 }
 
 .red {
-	stroke: red;
+	stroke: #ED1B2E;
 	fill: none;
+	stroke-width: 2.5;
+}
+
+.redstat {
+	stroke: #ED1B2E;
 	stroke-width: 2;
+	fill: white;
 }
 
 .redext {
-	stroke: red;
+	stroke: #ED1B2E;
 	fill: none;
-	stroke-width: 2;
+	stroke-width: 2.5;
+	stroke-dasharray: 7,5;
 }
 
 .orange {
-	stroke: #ff8533;
+	stroke: #F68B1F;
 	fill: none;
-	stroke-width: 2;
+	stroke-width: 2.5;
+	stroke-dasharray: 7,5;
 }
 
 .gold {
-	stroke: gold;
+	stroke: #FBBD12;
 	fill: none;
-	stroke-width: 2;
+	stroke-width: 2.5;
+	stroke-dasharray: 7,5;
 }
 
 .northstar {
-	stroke: black;
+	stroke: #0053A0;
 	fill: none;
+	stroke-width: 1;
+}
+
+.northstar2 {
+	stroke: #FFD204;
+	fill: none;
+	stroke-width: 2.5;
+}
+
+.northstar3 {
+	stroke: #0053A0;
+	fill: none;
+	stroke-width: 5;
+}
+
+.northstarstat {
+	stroke: #0053A0;
 	stroke-width: 2;
+	fill: #FFD204;
+}
+
+.sharedstat {
+	stroke: black;
+	stroke-width: 2;
+	fill: white;
 }
 
 .map {
-border: 3px solid #999;
+	border: 3px solid #999;
 	margin: 10px 0 0 20px;
+	border-radius: 10px;
 }
