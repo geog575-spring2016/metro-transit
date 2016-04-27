@@ -5,6 +5,9 @@
 		<meta name="viewport" content="width=device-width">
 		<title>Metro Transit</title>
 
+		<!--library stylesheets-->
+		<link rel="stylesheet" href="lib/leaflet-0.7.3/leaflet.css">
+
 		<!--put your external stylesheet links here-->
 		<link rel="stylesheet" href="css/style.css"/>
 		<!--[if IE<9]>
@@ -14,14 +17,20 @@
 
 	<body>
 		<!--put your initial page content here-->
-		<div id="content"></div>
+		<div id="map"></div>
+<!-- 		<div id="content">
+			<button id="zoom_in">+</button>
+			<button id="zoom_out">-</button>
+		</div> -->
 		<!--you can also use this space for internal scripts or stylesheets;
 		place these within <script> or <style> tags-->
-
 		<script type="text/javascript" src="lib/d3.min.js"></script>
 		<script type="text/javascript" src="lib/d3-queue.v2.min.js"></script>
 		<script type="text/javascript" src="lib/topojson.v1.min.js"></script>
 		<script type="text/javascript" src="lib/simple_statistics.js"></script>
+		<script type="text/javascript" src="lib/d3.v3.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="lib/leaflet-0.7.3/leaflet-src.js"></script>
 
 		<!--main script-->
 		<script type="text/javascript" src="js/main.js"></script>

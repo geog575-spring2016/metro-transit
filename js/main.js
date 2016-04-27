@@ -1,26 +1,37 @@
-//begin script when window loads
-window.onload = setMap();
+/* Metro Transit */
 
-function setMap(){
-	var width = window.innerWidth * 0.9,
-		height = 700;
+//Create the Leaflet map
+function createMap(){
+    //setting pan bounds
+    var southWest = L.latLng(44.796356, -93.812432),
+    northEast = L.latLng(45.103478, -92.812017),
+    bounds = L.latLngBounds(southWest, northEast);
+    //create the map and set center and zoom max/min
+    var map = L.map('map', {
+        center: [44.958401, -93.166810],
+        zoom: 11,
+        maxBounds: bounds,
+        maxZoom: 13,
+        minZoom: 10
+    });
 
-	var map = d3.select("body")
-		.append("svg")
-		.attr("class", "map")
-		.attr("width", width)
-		.attr("height", height);
+    //make map a global variable
+    window.map = map;
 
-	var projection = d3.geo.azimuthalEquidistant()
-        .center([0, 44.886])
-        .rotate([93.24, 0, 0])
-        .scale(78000)
-        .translate([width / 2, height / 2]);
+    var CartoDB_PositronNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd'
+    }).addTo(map);
+};
 
-	var path = d3.geo.path()
-		.projection(projection);
-
-    //use queue.js to parallelize asynchronous data loading
+//Import GeoJSON data
+function getData(map){
+    //load the data
+    $.ajax("data/topojsons/BlueLine.topojson", {
+        dataType: "json"
+    });
+};
+    // use queue.js to parallelize asynchronous data loading
     d3_queue.queue()
         .defer(d3.csv, "data/TransitData.csv") //load attributes from csv
         .defer(d3.json, "data/topojsons/MetroCensusTracts.topojson")
@@ -173,6 +184,76 @@ function setMap(){
                 return "sharedstat " + d.StationID;
             })
             .attr("d", path);     
-
-    };
 };
+
+    // var attrArray = ["Median age (years)", "Households", "Kids Under 18", "Car, truck, or van - Mean travel time to work (minutes)", "Public transportation - Mean travel time to work (minutes)", "Drove Alone", "Carpooled", "Public transportation (excluding taxicab)", "Bicycle", "Walked", "Other means", "Worked at home", "White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander", "Some other race alone", "Two or more races", "Median household income"]; 
+
+    // var width = window.innerWidth * 0.9,
+    //  height = 700;
+
+    // var map = d3.select("body")
+    //  .append("svg")
+    //  .attr("class", "map")
+    //  .attr("width", width)
+    //  .attr("height", height);
+
+    // var projection = d3.geo.azimuthalEquidistant()
+ //        .center([0, 44.886])
+ //        .rotate([93.24, 0, 0])
+ //        .scale(78000)
+ //        .translate([width / 2, height / 2]);
+
+    // var path = d3.geo.path()
+    //  .projection(projection);
+
+ //    var zoom = d3.behavior.zoom()
+ //    .scaleExtent([1, 8])
+ //    .on("zoom", move);
+
+ //    var svg = d3.select("body").append("svg")
+ //        .attr("width", width)
+ //        .attr("height", height)
+ //        .append("g")
+ //        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+ //        .call(zoom);
+
+ //    var g = svg.append("g");
+
+ //    svg.append("rect")
+ //        .attr("class", "overlay")
+ //        .attr("x", -width / 2)
+ //        .attr("y", -height / 2)
+ //        .attr("width", width)
+ //        .attr("height", height);
+
+ //    function move() {
+ //      var t = d3.event.translate,
+ //          s = d3.event.scale;
+ //      t[0] = Math.min(width / 2 * (s - 1), Math.max(width / 2 * (1 - s), t[0]));
+ //      t[1] = Math.min(height / 2 * (s - 1) + 230 * s, Math.max(height / 2 * (1 - s) - 230 * s, t[1]));
+ //      zoom.translate(t);
+ //      g.style("stroke-width", 1 / s).attr("transform", "translate(" + t + ")scale(" + s + ")");
+ //    }
+
+// function createDropdown(){
+//     //add select element
+//     var dropdown = d3.select("body")
+//         .append("select")
+//         .attr("class", "dropdown");
+
+//     //add initial option
+//     var titleOption = dropdown.append("option")
+//         .attr("class", "titleOption")
+//         .attr("disabled", "true")
+//         .text("Select Attribute");
+
+//     //add attribute name options
+//     var attrOptions = dropdown.selectAll("attrOptions")
+//         .data(attrArray)
+//         .enter()
+//         .append("option")
+//         .attr("value", function(d){ return d })
+//         .text(function(d){ return d });
+// };
+
+$(document).ready(createMap);

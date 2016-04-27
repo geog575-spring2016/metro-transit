@@ -1,6 +1,13 @@
 /* 575 boilerplate style.css */
 
 /*Map*/
+#map {
+	height: 600px;
+	width: 80%;
+	display: inline-block;
+	border-radius: 10px;
+}
+
 .tracts {
 	fill: none;
 	stroke: #737373;
@@ -9,8 +16,6 @@
 
 .hydro {
 	fill: #ccffeb;
-	/*stroke: #0033cc;*/
-}
 
 .blue {
 	stroke: #0053A0;
@@ -114,8 +119,16 @@
 	fill: white;
 }
 
-.map {
+/*.map {
 	border: 3px solid #999;
 	margin: 10px 0 0 20px;
 	border-radius: 10px;
+}*/
+
+/*.overlay {
+  fill: none;
+  pointer-events: all;
 }
+button {
+  padding: 10px 20px;
+}*/
