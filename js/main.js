@@ -49,13 +49,20 @@ function getData(map){
 
    var topoLayer = new L.TopoJSON();
 
-$.getJSON('data/topojsons/BlueLine.topojson')
-  .done(addTopoData);
+  var blueLine = $.getJSON('data/topojsons/BlueLine.topojson')
+    .done(addTopoData);
 
-function addTopoData(topoData){  
-  topoLayer.addData(topoData);
-  topoLayer.addTo(map);
-}
+    blueLine.addClass( "blue" );
+
+  var greenLine = $.getJSON('data/topojsons/GreenLine.topojson')
+    .done(addTopoData);
+
+    greenLine.addClass( "green" );
+
+  function addTopoData(topoData){  
+    topoLayer.addData(topoData);
+    topoLayer.addTo(map);
+  }
 };
 
 
