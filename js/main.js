@@ -3,14 +3,14 @@
 //Create the Leaflet map
 function createMap(){
     //setting pan bounds
-    var southWest = L.latLng(44.796356, -93.812432),
-    northEast = L.latLng(45.103478, -92.812017),
+    var southWest = L.latLng(44.596356, -93.812432),
+    northEast = L.latLng(45.403478, -92.812017),
     bounds = L.latLngBounds(southWest, northEast);
     //access token
     // L.mapbox.accessToken = '<pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA>';
     //create the map and set center and zoom max/min
     var map = L.map('map', {
-        center: [44.958401, -93.166810],
+        center: [44.958401, -93.206810],
         zoom: 11,
         maxBounds: bounds,
         maxZoom: 13,
@@ -95,14 +95,31 @@ function getData(map){
   //   topoLayer.addData(topoData);
   //   topoLayer.addTo(map);
   // }
+  var metroCensusTracts = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+          color: '#8c8c8c',
+          weight: 1,
+          fillOpacity: 0
+      };
+    }
+  });
   var blueLine = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#0053A0' };
+        return { 
+          color: '#0053A0',
+          weight: 3,
+          opacity: 1 
+        };
     }
   });
   var redLine = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#ED1B2E' };
+        return { 
+          color: '#ED1B2E', 
+          weight: 3,
+          opacity: 1
+        };
     }
   });
   var goldLine = L.geoJson (null,{
@@ -110,15 +127,18 @@ function getData(map){
         return { 
             color: '#FBBD12', 
             weight: 3,
-            opacity: 0.5,
-            dashArray: '3'
-
+            dashArray: '5',
+            opacity: 1
         };
     }
   });
   var greenLine = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#028244' };
+        return { 
+          color: '#028244',
+          weight: 3,
+          opacity: 1
+        };
     }
   });
   var orangeLine = L.geoJson (null,{
@@ -126,14 +146,36 @@ function getData(map){
         return {
          color: ' #F68B1F',
          weight: 3,
-         opacity: 0.5,
-         dashArray: '3' 
+         dashArray: '5',
+         opacity: 1 
      };
     }
   });
   var northStarLine = L.geoJson (null,{
    style: function(feature) {
-        return { color: ' #0053A0' };
+        return { 
+          color: '#0053A0',
+          weight: 1,
+          opacity: 1
+        };
+    }
+  });
+  var northStarLine2 = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+          color: '#FFD204',
+          weight: 3,
+          opacity: 1
+        };
+    }
+  });
+  var northStarLine3 = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+          color: '#000066',
+          weight: 5,
+          opacity: 1
+        };
     }
   });
   var blueLineExt = L.geoJson (null,{
@@ -141,8 +183,8 @@ function getData(map){
         return { 
             color: '#0053A0',
             weight: 3,
-            opacity: 0.5,
-            dashArray: '3'
+            dashArray: '5',
+            opacity: 1
       };
     }
   });
@@ -151,8 +193,8 @@ function getData(map){
         return { 
             color: '#ED1B2E',
             weight: 3,
-            opacity: 0.5,
-            dashArray: '3',
+            dashArray: '5',
+            opacity: 1
      };
     }
   });
@@ -161,17 +203,11 @@ function getData(map){
         return { 
             color: ' #028244',
             weight: 3,
-            opacity: 0.5,
-            dashArray: '3',
-
+            opacity: 1,
+            dashArray: '5'
      };
     }
   });
-  // var metroCensusTracts = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return { color: ' #5a8c8c' };
-  //   }
-  // });
   var blueStations = L.geoJson (null,{
    style: function(feature) {
         return { color: ' #028244' };
@@ -215,6 +251,10 @@ function getData(map){
   omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
     .addTo(map);
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine2)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3)
     .addTo(map);
   omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
     .addTo(map);
