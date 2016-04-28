@@ -19,7 +19,8 @@
 }
 
 .blue {
-	stroke: #0053A0;
+	/*stroke: #0053A0;*/
+	stroke: red;
 	fill: none;
 	stroke-width: 2.5;
 }

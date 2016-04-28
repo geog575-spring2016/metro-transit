@@ -6,6 +6,8 @@ function createMap(){
     var southWest = L.latLng(44.796356, -93.812432),
     northEast = L.latLng(45.103478, -92.812017),
     bounds = L.latLngBounds(southWest, northEast);
+    //access token
+    // L.mapbox.accessToken = '<pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA>';
     //create the map and set center and zoom max/min
     var map = L.map('map', {
         center: [44.958401, -93.166810],
@@ -13,15 +15,29 @@ function createMap(){
         maxBounds: bounds,
         maxZoom: 13,
         minZoom: 10
-    });
+    }
+    );
 
     //make map a global variable
     window.map = map;
 
-    var CartoDB_PositronNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+     var CartoDB_PositronNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
         subdomains: 'abcd'
     }).addTo(map);
+
+
+    // var CartoDB_PositronNoLabels = L.tileLayer('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'), {
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    //     subdomains: 'abcd'
+    // }.addTo(map);
+
+    // var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA', {
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    //     subdomains: 'abcd'
+    // }).addTo(map);
+    // var mapbox = L.tileLayer ('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'),
+    // }).addTo(map);
 
     getData(map);
 
@@ -33,37 +49,193 @@ function createMap(){
 //Import GeoJSON data
 function getData(map){
     //load the data
-   L.TopoJSON = L.GeoJSON.extend({  
-      addData: function(jsonData) {    
-        if (jsonData.type === "Topology") {
-          for (key in jsonData.objects) {
-            geojson = topojson.feature(jsonData, jsonData.objects[key]);
-            L.GeoJSON.prototype.addData.call(this, geojson);
-          }
-        }    
-        else {
-          L.GeoJSON.prototype.addData.call(this, jsonData);
-        }
-      }  
-    });
+  //  L.TopoJSON = L.GeoJSON.extend({  
+  //     addData: function(jsonData) {    
+  //       if (jsonData.type === "Topology") {
+  //         for (key in jsonData.objects) {
+  //           geojson = topojson.feature(jsonData, jsonData.objects[key]);
+  //           L.GeoJSON.prototype.addData.call(this, geojson);
+  //         }
+  //       }    
+  //       else {
+  //         L.GeoJSON.prototype.addData.call(this, jsonData);
+  //       }
+  //     }  
+  //   });
 
-   var topoLayer = new L.TopoJSON();
+  //  var topoLayer = new L.TopoJSON();
 
-  var blueLine = $.getJSON('data/topojsons/BlueLine.topojson')
-    .done(addTopoData);
 
-    blueLine.addClass( "blue" );
+  // var blueLine = $.getJSON('data/topojsons/BlueLine.topojson')
+  //   .done(addTopoData);
 
-  var greenLine = $.getJSON('data/topojsons/GreenLine.topojson')
-    .done(addTopoData);
+  //   // $("blueLine").addClass( "blue" );
 
-    greenLine.addClass( "green" );
+  // var greenLine = $.getJSON('data/topojsons/GreenLine.topojson')
+  //   .done(addTopoData);
 
-  function addTopoData(topoData){  
-    topoLayer.addData(topoData);
-    topoLayer.addTo(map);
-  }
+  //   // $("greenLine").addClass( "green" );
+
+  // var goldLine = $.getJSON('data/topojsons/GoldLine.topojson')
+  //   .done(addTopoData);
+
+  //   // $("goldLine").addClass( "gold" );
+
+  // var orangeLine = $.getJSON('data/topojsons/OrangeLine.topojson')
+  //   .done(addTopoData);
+
+  //   // $("orangeLine").addClass( "orange" );
+
+  // var redLine = $.getJSON('data/topojsons/RedLine.topojson')
+  //   .done(addTopoData);
+
+  //   // $("redLine").addClass( "red" );
+
+  // function addTopoData(topoData){  
+  //   topoLayer.addData(topoData);
+  //   topoLayer.addTo(map);
+  // }
+  var blueLine = L.geoJson (null,{
+   style: function(feature) {
+        return { color: '#0053A0' };
+    }
+  });
+  var redLine = L.geoJson (null,{
+   style: function(feature) {
+        return { color: '#ED1B2E' };
+    }
+  });
+  var goldLine = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#FBBD12', 
+            weight: 3,
+            opacity: 0.5,
+            dashArray: '3'
+
+        };
+    }
+  });
+  var greenLine = L.geoJson (null,{
+   style: function(feature) {
+        return { color: '#028244' };
+    }
+  });
+  var orangeLine = L.geoJson (null,{
+   style: function(feature) {
+        return {
+         color: ' #F68B1F',
+         weight: 3,
+         opacity: 0.5,
+         dashArray: '3' 
+     };
+    }
+  });
+  var northStarLine = L.geoJson (null,{
+   style: function(feature) {
+        return { color: ' #0053A0' };
+    }
+  });
+  var blueLineExt = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#0053A0',
+            weight: 3,
+            opacity: 0.5,
+            dashArray: '3'
+      };
+    }
+  });
+  var redLineExt = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#ED1B2E',
+            weight: 3,
+            opacity: 0.5,
+            dashArray: '3',
+     };
+    }
+  });
+  var greenLineExt = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: ' #028244',
+            weight: 3,
+            opacity: 0.5,
+            dashArray: '3',
+
+     };
+    }
+  });
+  // var metroCensusTracts = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return { color: ' #5a8c8c' };
+  //   }
+  // });
+  var blueStations = L.geoJson (null,{
+   style: function(feature) {
+        return { color: ' #028244' };
+    }
+  });
+  var greenStations = L.geoJson (null,{
+   style: function(feature) {
+        return { color: ' #028244' };
+    }
+  });
+  var redStations = L.geoJson (null,{
+   style: function(feature) {
+        return { color: ' #028244' };
+    }
+  });
+  var sharedStations = L.geoJson (null,{
+   style: function(feature) {
+        return { color: ' #028244' };
+    }
+  });
+  var northStarStations = L.geoJson (null,{
+   style: function(feature) {
+        return { color: ' #028244' };
+    }
+  });
+  var railLines = 
+  omnivore.topojson('data/topojsons/BlueLine.topojson', null, blueLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/RedLine.topojson', null, redLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/GreenLine.topojson', null, greenLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/GoldLine.topojson', null, goldLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
+    .addTo(map);
+
+// station topojsons are coming in as pngs?? 
+  // omnivore.topojson('data/topojsons/BlueStations.topojson', null, blueStations)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/GreenStations.topojson', null, greenStations)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/RedStations.topojson', null, redStations)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/SharedStations.topojson', null, sharedStations)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/NorthStarStations.topojson', null, northStarStations)
+  //   .addTo(map);
+
+
+
 };
+
+
 
 
     // use queue.js to parallelize asynchronous data loading
