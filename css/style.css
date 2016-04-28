@@ -3,9 +3,18 @@
 /*Map*/
 #map {
 	height: 600px;
-	width: 80%;
+	width: 75%;
 	display: inline-block;
 	border-radius: 10px;
+}
+
+#panel {
+	height: 595px;
+	width: 24%;
+	display: inline-block;
+	border-radius: 10px;
+	border: solid #61bf1a 3px;
+	float: right;
 }
 
 .tracts {
