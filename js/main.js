@@ -3,28 +3,28 @@
 //Create the Leaflet map
 function createMap(){
     //setting pan bounds
-    var southWest = L.latLng(44.596356, -93.812432),
-    northEast = L.latLng(45.403478, -92.812017),
-    bounds = L.latLngBounds(southWest, northEast);
+    // var southWest = L.latLng(44.596356, -93.812432),
+    // northEast = L.latLng(45.403478, -92.812017),
+    // bounds = L.latLngBounds(southWest, northEast);
     //access token
     // L.mapbox.accessToken = '<pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA>';
     //create the map and set center and zoom max/min
-    var map = L.map('map', {
-        center: [44.958401, -93.206810],
-        zoom: 11,
-        maxBounds: bounds,
-        maxZoom: 13,
-        minZoom: 10
-    }
-    );
+    // var map = L.map('map', {
+    //     center: [44.958401, -93.206810],
+    //     zoom: 11,
+    //     maxBounds: bounds,
+    //     maxZoom: 13,
+    //     minZoom: 10
+    // }
+    // );
 
     //make map a global variable
-    window.map = map;
+    // window.map = map;
 
-     var CartoDB_PositronNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-        subdomains: 'abcd'
-    }).addTo(map);
+    //  var CartoDB_PositronNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    //     subdomains: 'abcd'
+    // }).addTo(map);
 
 
     // var CartoDB_PositronNoLabels = L.tileLayer('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'), {
@@ -38,6 +38,24 @@ function createMap(){
     // }).addTo(map);
     // var mapbox = L.tileLayer ('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'),
     // }).addTo(map);
+
+
+	var map = L.map('map', {
+		center: [44.958401, -93.206810],
+		zoom: 11
+	});
+
+	//mapbox://styles/gvriezen/cinjd2amr001gadniy7zysc61
+	//pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA
+
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	maxZoom: 19,
+	minZoom: 11,
+	id: 'mapbox://styles/gvriezen/cinjd2amr001gadniy7zysc61',
+	accessToken: 'pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'
+}).addTo(map);
 
     getData(map);
 
