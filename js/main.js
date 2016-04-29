@@ -53,7 +53,7 @@ function createMap(){
 	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 	maxZoom: 19,
 	minZoom: 11,
-	id: 'mapbox://styles/gvriezen/cinjd2amr001gadniy7zysc61',
+	id: 'gvriezen.59a5f47c', //here's what we need <--- EX: swal94.4103e88e
 	accessToken: 'pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'
 }).addTo(map);
 
