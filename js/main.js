@@ -300,17 +300,19 @@ function getData(map){
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3)
     .addTo(map);
 
-// station topojsons are coming in as pngs?? 
-  // omnivore.topojson('data/topojsons/BlueStations.topojson', null, blueStations)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/GreenStations.topojson', null, greenStations)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/RedStations.topojson', null, redStations)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/SharedStations.topojson', null, sharedStations)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/NorthStarStations.topojson', null, northStarStations)
-  //   .addTo(map);
+  omnivore.topojson('data/topojsons/BlueStations.topojson', null, blueStations)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/GreenStations.topojson', null, greenStations)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/RedStations.topojson', null, redStations)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/SharedStations.topojson', null, sharedStations)
+    .addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarStations.topojson', null, northStarStations)
+    .addTo(map);
+
+L.Icon.Default.imagePath = 'lib/leaflet-0.7.3/images';
+
 
 
 
