@@ -39,10 +39,17 @@ function createMap(){
     // var mapbox = L.tileLayer ('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'),
     // }).addTo(map);
 
-
+  //setting pan bounds
+  var southWest = L.latLng(44.596356, -93.812432),
+  northEast = L.latLng(45.403478, -92.812017),
+  bounds = L.latLngBounds(southWest, northEast);
+  
 	var map = L.map('map', {
 		center: [44.958401, -93.206810],
-		zoom: 11
+		zoom: 11,
+    zoomControl: false,
+    scrollWheelZoom: false,
+    maxBounds: bounds
 	});
 
 	//mapbox://styles/gvriezen/cinjd2amr001gadniy7zysc61
@@ -51,14 +58,20 @@ function createMap(){
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	maxZoom: 19,
-	minZoom: 11,
+	maxZoom: 14,
+	minZoom: 10,
 	id: 'gvriezen.59a5f47c', //here's what we need <--- EX: swal94.4103e88e
 	accessToken: 'pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'
-}).addTo(map);
+  }).addTo(map);
 
-    getData(map);
+  getData(map);
 
+  var zoomHome = L.Control.zoomHome();
+  zoomHome.addTo(map);
+
+  new L.Control.GeoSearch({
+    provider: new L.GeoSearch.Provider.Google()
+  }).addTo(map);
 
 };
 
@@ -119,6 +132,14 @@ function getData(map){
           color: '#8c8c8c',
           weight: 1,
           fillOpacity: 0
+      };
+    }
+  });
+  var lakesRivers = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+          color: '#99ddff',
+          weight: 1,
       };
     }
   });
@@ -251,7 +272,11 @@ function getData(map){
         return { color: ' #028244' };
     }
   });
-  var railLines = 
+  var railLines =
+  omnivore.topojson('data/topojsons/LakesAndRivers.topojson', null, lakesRivers)
+    .addTo(map); 
+  omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
+    .addTo(map);
   omnivore.topojson('data/topojsons/BlueLine.topojson', null, blueLine)
     .addTo(map);
   omnivore.topojson('data/topojsons/RedLine.topojson', null, redLine)
@@ -273,8 +298,6 @@ function getData(map){
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine2)
     .addTo(map);
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
     .addTo(map);
 
 // station topojsons are coming in as pngs?? 
