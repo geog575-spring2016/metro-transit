@@ -1,10 +1,43 @@
 /* Metro Transit */
-//pseudo-global variables
-var attrArray = ["Population", "Median age (years)", "Households", "Normalized Kids", "Normalized Car, truck, or van - Mean travel time to work", "Public transportation - Mean travel time to work", "Drove Alone Normalized", "Carpool Normalized", "Public Transport Normalized", "Bikes Normalized", "Walked Normalized", "Other Normalized", "Home Normalized", "White Normalized", "Black Normalized", "Am Indian Normalized", "Asian Normalized", "Hawaiian", "Other", "Two", "Median household income"]; //list of attributes
-var expressed = attrArray[0]; //initial attribute
 
 //Create the Leaflet map
 function createMap(){
+    //setting pan bounds
+    // var southWest = L.latLng(44.596356, -93.812432),
+    // northEast = L.latLng(45.403478, -92.812017),
+    // bounds = L.latLngBounds(southWest, northEast);
+    //access token
+    // L.mapbox.accessToken = '<pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA>';
+    //create the map and set center and zoom max/min
+    // var map = L.map('map', {
+    //     center: [44.958401, -93.206810],
+    //     zoom: 11,
+    //     maxBounds: bounds,
+    //     maxZoom: 13,
+    //     minZoom: 10
+    // }
+    // );
+
+    //make map a global variable
+    // window.map = map;
+
+    //  var CartoDB_PositronNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    //     subdomains: 'abcd'
+    // }).addTo(map);
+
+
+    // var CartoDB_PositronNoLabels = L.tileLayer('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'), {
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    //     subdomains: 'abcd'
+    // }.addTo(map);
+
+    // var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA', {
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    //     subdomains: 'abcd'
+    // }).addTo(map);
+    // var mapbox = L.tileLayer ('https://api.mapbox.com/styles/v1/gvriezen/cinjd2amr001gadniy7zysc61/tiles/%7Bz%7D/%7Bx%7D/%7By%7D?access_token=pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'),
+    // }).addTo(map);
 
   //setting pan bounds
   var southWest = L.latLng(44.596356, -93.812432),
@@ -18,6 +51,9 @@ function createMap(){
     scrollWheelZoom: false,
     maxBounds: bounds
 	});
+
+	//mapbox://styles/gvriezen/cinjd2amr001gadniy7zysc61
+	//pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA
 
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -45,22 +81,6 @@ function createMap(){
     provider: new L.GeoSearch.Provider.Google()
   }).addTo(map);
 
-<<<<<<< HEAD
-  // L.choropleth(geojsonData, {
-  //   valueProperty: 'incidents', // which property in the features to use
-  //   scale: ['white', 'red'], // chroma.js scale - include as many as you like
-  //   steps: 5, // number of breaks or steps in range
-  //   mode: 'q', // q for quantile, e for equidistant, k for k-means
-  //   style: {
-  //       color: '#fff', // border color
-  //       weight: 2,
-  //       fillOpacity: 0.8
-  //   },
-  //   onEachFeature: function(feature, layer) {
-  //       layer.bindPopup(feature.properties.value)
-  //   }
-  // }).addTo(map)
-=======
 };
 
 
@@ -192,62 +212,33 @@ function getData(map){
 
   // var blueLine = $.getJSON('data/topojsons/BlueLine.topojson')
   //   .done(addTopoData);
->>>>>>> origin/master
 
-    //   function callback(error, csvData, tracts){
+  //   // $("blueLine").addClass( "blue" );
 
-    //     //translate canada TopoJSON
-    //     var censusTracts = topojson.feature(tracts, tracts.objects.MetroCensusTracts).features;
+  // var greenLine = $.getJSON('data/topojsons/GreenLine.topojson')
+  //   .done(addTopoData);
 
-    //     //create the color scale
-    //     var colorScale = makeColorScale(csvData);
+  //   // $("greenLine").addClass( "green" );
 
-    //     //add enumeration units to the map
-    //     setEnumerationUnits(censusTracts, map, path, colorScale);
+  // var goldLine = $.getJSON('data/topojsons/GoldLine.topojson')
+  //   .done(addTopoData);
 
-    //     //function to create a dropdown menu for attribute selection
-    //     createDropdown(csvData);
-    // };
+  //   // $("goldLine").addClass( "gold" );
 
-};
+  // var orangeLine = $.getJSON('data/topojsons/OrangeLine.topojson')
+  //   .done(addTopoData);
 
-// function setEnumerationUnits(censusTracts, map, path, colorScale){
-//     //add Canadian Provinces to map
-//     var tracts = map.selectAll(".GEOID")
-//         .data(censusTracts)
-//         .enter()
-//         .append("path")
-//         .attr("class", function(d){
-//             return "census tract ID" + d.properties.GEOID;
-//         })
-//         .attr("d", path)
-//         .style("fill", function(d){
-//             return choropleth(d.properties, colorScale);
-//         })
-//         //highlight, dehighlight, and create labels when mousing over provinces and bars
-//         .on("mouseover", function(d){
-//             highlight(d.properties);
-//         })
-//         .on("mouseout", function(d){
-//             dehighlight(d.properties);
-//         })
-//         .on("mousemove", moveLabel);
+  //   // $("orangeLine").addClass( "orange" );
 
-//     //add style descriptor to each path
-//     var desc = tracts.append("desc")
-//         .text('{"stroke": "#fff", "stroke-width": "2px"}');
-// };
+  // var redLine = $.getJSON('data/topojsons/RedLine.topojson')
+  //   .done(addTopoData);
 
-//Import GeoJSON data
-function getData(map){
+  //   // $("redLine").addClass( "red" );
 
-<<<<<<< HEAD
-=======
   function addTopoData(topoData){  
     topoLayer.addData(topoData);
     topoLayer.addTo(map);
   }
->>>>>>> origin/master
   var metroCensusTracts = L.geoJson (null,{
    style: function(feature) {
         return { 
@@ -362,7 +353,7 @@ function getData(map){
   var greenLineExt = L.geoJson (null,{
    style: function(feature) {
         return { 
-            color: '#028244',
+            color: ' #028244',
             weight: 3,
             opacity: 1,
             dashArray: '5'
@@ -371,7 +362,7 @@ function getData(map){
   });
   var blueStations = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#0053A0' };
+        return { color: ' #028244' };
     }
   });
   var greenStations = L.geoJson (null,{
@@ -381,29 +372,24 @@ function getData(map){
   });
   var redStations = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#ED1B2E' };
+        return { color: ' #028244' };
     }
   });
   var sharedStations = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#000' };
+        return { color: ' #028244' };
     }
   });
   var northStarStations = L.geoJson (null,{
    style: function(feature) {
-        return { color: '#FFD204' };
+        return { color: ' #028244' };
     }
   });
-
-  var water = 
+  var railLines =
   omnivore.topojson('data/topojsons/LakesAndRivers.topojson', null, lakesRivers)
     .addTo(map); 
-
-  var census =  
   omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
     .addTo(map);
-
-  var railLines =
   omnivore.topojson('data/topojsons/BlueLine.topojson', null, blueLine)
     .addTo(map);
   omnivore.topojson('data/topojsons/RedLine.topojson', null, redLine)
@@ -427,8 +413,6 @@ function getData(map){
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3)
     .addTo(map);
 
-<<<<<<< HEAD
-=======
 //no longer need to add topojsons, station markers added through geojsons in ajax callback
 
   // omnivore.topojson('data/topojsons/BlueStations.topojson')
@@ -456,80 +440,12 @@ function getData(map){
 //   fillOpacity: 0.5
 // }).addTo(map);
 
->>>>>>> origin/master
-
-// // station topojsons are coming in as pngs?? 
-//   omnivore.topojson('data/topojsons/BlueStations.topojson', null, blueStations)
-//     .addTo(map);
-//   omnivore.topojson('data/topojsons/GreenStations.topojson', null, greenStations)
-//     .addTo(map);
-//   omnivore.topojson('data/topojsons/RedStations.topojson', null, redStations)
-//     .addTo(map);
-//   omnivore.topojson('data/topojsons/SharedStations.topojson', null, sharedStations)
-//     .addTo(map);
-//   omnivore.topojson('data/topojsons/NorthStarStations.topojson', null, northStarStations)
-//     .addTo(map);
-
-//function to create color scale generator
-function makeColorScale(data){
-    var colorClasses = ['#f7f7f7','#cccccc','#969696','#636363','#252525'];
-
-    //create color scale generator
-    var colorScale = d3.scale.threshold()
-        .range(colorClasses);
-
-    //build array of all values of the expressed attribute
-    var domainArray = [];
-    for (var i=0; i<data.length; i++){
-        var val = parseFloat(data[i][expressed]);
-        domainArray.push(val);
-    };
-
-    //cluster data using ckmeans clustering algorithm to create natural breaks
-    var clusters = ss.ckmeans(domainArray, 5);
-    //reset domain array to cluster minimums
-    domainArray = clusters.map(function(d){
-        return d3.min(d);
-    });
-    //remove first value from domain array to create class breakpoints
-    domainArray.shift();
-
-    //assign array of last 4 cluster minimums as domain
-    colorScale.domain(domainArray);
-
-    return colorScale;
-};
-
-//function to create a dropdown menu for attribute selection
-function createDropdown(csvData){
-    //add select element
-    var dropdown = d3.select("body")
-        .append("select")
-        .attr("class", "dropdown")
-        .on("change", function(){
-            changeAttribute(this.value, csvData)
-        });
-
-    //add initial option
-    var titleOption = dropdown.append("option")
-        .attr("class", "titleOption")
-        .attr("disabled", "true")
-        .text("Select Resource");
-
-    //add attribute name options
-    var attrOptions = dropdown.selectAll("attrOptions")
-        .data(attrArray)
-        .enter()
-        .append("option")
-        .attr("value", function(d){ return d })
-        .text(function(d){ return d });
-};
 
 };
 
 
-<<<<<<< HEAD
-=======
+
+
 
 
 
@@ -758,5 +674,4 @@ function createDropdown(csvData){
 //         .text(function(d){ return d });
 // };
 
->>>>>>> origin/master
 $(document).ready(createMap);
