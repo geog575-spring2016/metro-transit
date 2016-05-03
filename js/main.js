@@ -50,9 +50,28 @@ function createMap(){
 };
 
 
-
 //Import GeoJSON data
 function getData(map){
+        $.ajax(
+    "data/Census Tracts/CensusTracts.geojson",
+     {
+          dataType: "json",
+          success: function(response){
+              var geojsonMarkerOptions = {
+                radius: 3,
+                fillColor: "#fff",
+                color: "#000",
+                weight: 1, 
+                opacity: 1
+              };
+  //create a Leaflet GeoJSON layer and add it to the map
+              L.geoJson(response,{
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(map);
+            }
+        });
    $.ajax(
     "data/geojsons/BlueStations.geojson.json",
      {
@@ -304,8 +323,8 @@ function getData(map){
   var railLines =
   omnivore.topojson('data/topojsons/LakesAndRivers.topojson', null, lakesRivers)
     .addTo(map); 
-  omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
-    .addTo(map);
+  // omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
+  //   .addTo(map);
   omnivore.topojson('data/topojsons/BlueLine.topojson', null, blueLine)
     .addTo(map);
   omnivore.topojson('data/topojsons/RedLine.topojson', null, redLine)
