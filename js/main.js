@@ -1,6 +1,23 @@
 /* Metro Transit */
 var attrArray = ["Median age (years)", "Households", "Kids Under 18", "Car, truck, or van - Mean travel time to work (minutes)", "Public transportation - Mean travel time to work (minutes)", "Drove Alone", "Carpooled", "Public transportation (excluding taxicab)", "Bicycle", "Walked", "Other means", "Worked at home", "White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander", "Some other race alone", "Two or more races", "Median household income"]; 
 
+function loadData(){
+  d3_queue.queue()
+    .defer(d3.csv, "../data/TransitData.csv")
+    .defer(d3.json, "../data/MetroCensusTracts.topojson")
+    .await(callback);
+}
+
+function callback(error, csvData, tracts){
+  var CT = topojson.feature(tracts, tracts.objects.MetroCensusTracts).features;
+
+  var censusTracts = map.append("path")
+    .datum(europeCountries)
+    .attr("class", "countries")
+    .attr("d", path);
+}
+
+
 
 //Create the Leaflet map
 function createMap(){
@@ -38,7 +55,7 @@ function createMap(){
   ext: 'png'
   }).addTo(map);
 
-  getData(map);
+  //getData(map);
 
   var zoomHome = L.Control.zoomHome();
   zoomHome.addTo(map);
@@ -329,7 +346,35 @@ function getData(map){
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3)
     .addTo(map);
 
+
 };
+
+function joinData(metroCensusTracts, csvData){
+
+  for (var i=0; i<csvData.length; i++){
+          var csvCT = csvData[i];
+          var csvKey = csvCT.ID;
+
+          for (var a=0; a<censusTracts.length; a++){
+
+            var geojsonProps = censusTracts[a].properties;
+            var geojsonKey = geojsonProps.GEOID;
+
+            if (geojsonKey == csvKey){
+              attrArray.forEach(function(attr){
+                var val = parseFloat(csvCT[attr]);
+                geojsonProps[attr] = val;
+              });
+            };
+          };
+        };
+
+    return censusTracts; 
+
+};
+
+
+
 
 
 
