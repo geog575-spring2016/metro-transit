@@ -52,26 +52,52 @@ function createMap(){
 
 //Import GeoJSON data
 function getData(map){
-        $.ajax(
-    "data/Census Tracts/CensusTracts.geojson",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 3,
-                fillColor: "#fff",
-                color: "#000",
-                weight: 1, 
-                opacity: 1
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map);
-            }
-        });
+  $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
+  L.geoJson( censusTracts ).addTo(map);
+
+  function getColor(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+  }
+  function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.TransitData_Population),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+  }
+
+  L.geoJson(censusTracts, {style: style}).addTo(map);
+  console.log(censusTracts)
+  });
+  //       $.ajax(
+  //   "data/Census Tracts/CensusTracts.geojson",
+  //    {
+  //         dataType: "json",
+  //         success: function(response){
+  //             var geojsonMarkerOptions = {
+  //               fillColor: "#fff",
+  //               color: "#000",
+  //               weight: 1, 
+  //               opacity: 1
+  //             };
+  // //create a Leaflet GeoJSON layer and add it to the map
+  //             L.geoJson(response,{
+  //               pointToLayer: function(feature, latlng) {
+  //                 return L.circleMarker(latlng, geojsonMarkerOptions);
+  //               }
+  //             }).addTo(map);
+  //           }
+  //       });
    $.ajax(
     "data/geojsons/BlueStations.geojson.json",
      {
