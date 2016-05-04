@@ -79,7 +79,7 @@ for (var i = 0; i < variables.length; i++) {
 // Create a layer of state features, and when it's done
 // loading, run loadData
 var usLayer = L.mapbox.featureLayer()
-    .loadURL('data/Census Tracts/CensusTracts.geojson')
+    .loadURL('/mapbox.js/assets/data/us.geojson')
     .addTo(map)
     .on('ready', loadData);
 

@@ -36,8 +36,8 @@ function createMap(){
     minZoom: 10,
     maxZoom: 14,
     ext: 'png',
-    zIndex: 7
-  }).addTo(map);
+    zIndex: 1000000
+  }).addTo(map).bringToFront;
 
 
   getCensusData(map);
@@ -56,6 +56,13 @@ function createMap(){
 //Import GeoJSON data
 function getCensusData(map){
   $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
+
+  var hues = [
+    '#000',
+    '#404040',
+    '#808080',
+    '#BFBFBF',
+    '#fff'];
 
   function getColor(d) {
     return d > 10000 ? '#000000' :
@@ -92,6 +99,7 @@ function getRailData(map){
               var geojsonMarkerOptions = {
                 radius: 3,
                 fillColor: "#fff",
+                fillOpacity: 1,
                 color: "#0053A0",
                 weight: 1, 
                 opacity: 1,
@@ -102,7 +110,7 @@ function getRailData(map){
                 pointToLayer: function(feature, latlng) {
                   return L.circleMarker(latlng, geojsonMarkerOptions);
                 }
-              }).addTo(map).bringToFront();
+              }).addTo(map);
             }
         });
   var greenStations = $.ajax(
@@ -113,6 +121,7 @@ function getRailData(map){
               var geojsonMarkerOptions = {
                 radius: 3,
                 fillColor: "#fff",
+                fillOpacity: 1,
                 color: "#028244",
                 weight: 1, 
                 opacity: 1,
@@ -134,6 +143,7 @@ function getRailData(map){
               var geojsonMarkerOptions = {
                 radius: 3,
                 fillColor: "#fff",
+                fillOpacity: 1,
                 color: "#ED1B2E",
                 weight: 1, 
                 opacity: 1,
@@ -154,8 +164,9 @@ function getRailData(map){
           success: function(response){
               var geojsonMarkerOptions = {
                 radius: 3,
-                fillColor: "#000",
-                color: "fff",
+                fillColor: "#fff",
+                fillOpacity: 1,
+                color: "#000",
                 weight: 1, 
                 opacity: 1,
                 zIndex: 6
@@ -176,6 +187,7 @@ function getRailData(map){
               var geojsonMarkerOptions = {
                 radius: 4,
                 fillColor: "#FFD204",
+                fillOpacity: 1,
                 color: "#000066",
                 weight: 1, 
                 opacity: 1,
@@ -196,8 +208,9 @@ function getRailData(map){
           success: function(response){
               var geojsonMarkerOptions = {
                 radius: 3,
-                fillColor: "#fff",
-                color: "#000",
+                fillColor: "#000",
+                fillOpacity: 1,
+                color: "#fff",
                 weight: 1, 
                 opacity: 1,
                 zIndex: 6
@@ -229,8 +242,11 @@ function getRailData(map){
    style: function(feature) {
         return { 
           color: '#99ddff',
+          fillColor: '#e6f2ff',
+          fillOpacity: 1,
           weight: 1,
-          zIndex: 3
+          zIndex: 3,
+          opacity: 1
       };
     }
   });
