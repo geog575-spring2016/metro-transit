@@ -49,11 +49,13 @@ function createMap(){
     provider: new L.GeoSearch.Provider.Google()
   }).addTo(map);
 
+  dropdown(map);
+
   showDropdown();
 
-function showDropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
+// function showDropdown() {
+//     document.getElementById("myDropdown").classList.toggle("show");
+// }
 
 //Close the dropdown menu if the user clicks outside of it
 // window.onclick = function(event) {
@@ -70,17 +72,55 @@ function showDropdown() {
 //   }
 // }
 
+function showDropdown () {
 $('#income').click(function(){
     getCensusDataIncome(map);
 
 });
 
 $('#age').click(function(){
-    getCensusDataIncome(map);
+    getCensusDataAge(map);
 
 }); 
 
 };
+
+//end of setmap function
+};
+
+
+ function dropdown (map) {
+
+//  var legend = L.control({position: 'topright'});
+// legend.onAdd = function (map) {
+//   var div = L.DomUtil.create('div', 'info legend');
+// div.innerHTML = 
+// '<select id="income"><option>Income</option></select>
+//  <select id="age"><option>Median Age</option></select>';
+// div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+// return div;
+
+// var div = L.DomUtil.create('div', 'info legend');
+// div.innerHTML='<select id="income"><option>Income</option></select>
+//                 <select id="age"><option>Age</option></select>';
+// div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+// return div;
+ var legend = L.control({position: 'topright'});
+legend.onAdd = function (map) {
+var div = L.DomUtil.create('div', 'info legend');
+div.innerHTML = '<sel'+'ect id= "income"><option>1</option></select>';
+div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+return div;
+
+
+
+};
+
+legend.addTo(map);
+};
+
+
+
 
 
 //Import GeoJSON data
