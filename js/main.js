@@ -40,7 +40,6 @@ function createMap(){
   }).addTo(map).bringToFront;
 
 
-  getCensusData(map);
   getRailData(map);
 
   var zoomHome = L.Control.zoomHome();
@@ -50,12 +49,44 @@ function createMap(){
     provider: new L.GeoSearch.Provider.Google()
   }).addTo(map);
 
+  showDropdown();
+
+function showDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+//Close the dropdown menu if the user clicks outside of it
+// window.onclick = function(event) {
+//   if (!event.target.matches('.dropbtn')) {
+
+//     var dropdowns = document.getElementsByClassName("dropdown-content");
+//     var i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       var openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('show')) {
+//         openDropdown.classList.remove('show');
+//       }
+//     }
+//   }
+// }
+
+$('#income').click(function(){
+    getCensusDataIncome(map);
+
+});
+
+$('#age').click(function(){
+    getCensusDataIncome(map);
+
+}); 
+
 };
 
 
 //Import GeoJSON data
-function getCensusData(map){
+function getCensusDataIncome(map){
   $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
+
 
   var hues = [
     '#000',
@@ -77,6 +108,43 @@ function getCensusData(map){
   function style(feature) {
     return {
         fillColor: getColor(feature.properties.TransitData_Population),
+        weight: .5,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: 0.6,
+        zIndex: 2
+    };
+  }
+
+  L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+  console.log(censusTracts)
+  });
+};
+
+function getCensusDataAge(map){
+  $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
+
+
+  var hues = [
+    '#000',
+    '#404040',
+    '#808080',
+    '#BFBFBF',
+    '#fff'];
+
+  function getColor(d) {
+    return d > 40 ? '#000000' :
+           d > 39  ? '#2B2B2B' :
+           d > 38  ? '#555555' :
+           d > 37  ? '#808080' :
+           d > 36   ? '#AAAAAA' :
+           d > 35   ? '#D5D5D5' :
+           d <= 35   ? '#FFFFFF' :
+                      '#FFF';
+  }
+  function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.TransitData_MedianAge),
         weight: .5,
         opacity: 1,
         color: 'white',
@@ -395,6 +463,8 @@ function getRailData(map){
     .addTo(map);
 
 };
+
+
 
 
 
