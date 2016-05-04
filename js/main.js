@@ -1,4 +1,7 @@
 /* Metro Transit */
+var populationLayer
+var ageLayer
+
 var attrArray = ["Median age (years)", "Households", "Kids Under 18", "Car, truck, or van - Mean travel time to work (minutes)", "Public transportation - Mean travel time to work (minutes)", "Drove Alone", "Carpooled", "Public transportation (excluding taxicab)", "Bicycle", "Walked", "Other means", "Worked at home", "White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander", "Some other race alone", "Two or more races", "Median household income"]; 
 
 
@@ -73,12 +76,21 @@ function createMap(){
 // }
 
 function showDropdown () {
-$('#income').click(function(){
-    getCensusDataIncome(map);
+
+$('#blank').click(function() {
+  // removeLayers(map);
+   
+
+});
+$('#population').click(function(){
+      // removeLayers(map);
+    getCensusDataPopulation(map);
+      
 
 });
 
 $('#age').click(function(){
+      // removeLayers(map);
     getCensusDataAge(map);
 
 }); 
@@ -108,11 +120,10 @@ $('#age').click(function(){
  var legend = L.control({position: 'topright'});
 legend.onAdd = function (map) {
 var div = L.DomUtil.create('div', 'info legend');
-div.innerHTML = '<sel'+'ect id= "income"><option>1</option></select>';
+div.innerHTML = 
+'<select><option>--</option><option id="population">Population</option><option id="age">Median Age</option></select>';
 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 return div;
-
-
 
 };
 
@@ -124,8 +135,8 @@ legend.addTo(map);
 
 
 //Import GeoJSON data
-function getCensusDataIncome(map){
-  $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
+function getCensusDataPopulation(map){
+  $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
 
 
   var hues = [
@@ -146,8 +157,9 @@ function getCensusDataIncome(map){
                       '#FFF';
   }
   function style(feature) {
+     console.log (feature);
     return {
-        fillColor: getColor(feature.properties.TransitData_Population),
+        fillColor: getColor(feature.properties.Population),
         weight: .5,
         opacity: 1,
         color: 'white',
@@ -156,13 +168,13 @@ function getCensusDataIncome(map){
     };
   }
 
-  L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+  populationLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   console.log(censusTracts)
   });
 };
 
 function getCensusDataAge(map){
-  $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
+  $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
 
 
   var hues = [
@@ -184,7 +196,7 @@ function getCensusDataAge(map){
   }
   function style(feature) {
     return {
-        fillColor: getColor(feature.properties.TransitData_MedianAge),
+        fillColor: getColor(feature.properties.MedianAge),
         weight: .5,
         opacity: 1,
         color: 'white',
@@ -193,7 +205,7 @@ function getCensusDataAge(map){
     };
   }
 
-  L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+  ageLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   console.log(censusTracts)
   });
 };
@@ -503,6 +515,11 @@ function getRailData(map){
     .addTo(map);
 
 };
+
+// function removeLayers (map) {
+//   map.removeLayer(populationLayer)
+//   map.removeLayer(ageLayer)
+// };
 
 
 
