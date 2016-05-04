@@ -23,22 +23,25 @@ function createMap(){
 
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	maxZoom: 14,
-	minZoom: 10,
-	id: 'gvriezen.59a5f47c', //here's what we need <--- EX: swal94.4103e88e
-	accessToken: 'pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'
+  	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+  	maxZoom: 14,
+  	minZoom: 10,
+  	id: 'gvriezen.59a5f47c', //here's what we need <--- EX: swal94.4103e88e
+  	accessToken: 'pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA'
   }).addTo(map);
 
-  var Stamen_TonerLabels = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}.{ext}', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  subdomains: 'abcd',
-  minZoom: 10,
-  maxZoom: 14,
-  ext: 'png'
+  Stamen_TonerLabels = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}.{ext}', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    subdomains: 'abcd',
+    minZoom: 10,
+    maxZoom: 14,
+    ext: 'png',
+    zIndex: 7
   }).addTo(map);
 
-  getData(map);
+
+  getCensusData(map);
+  getRailData(map);
 
   var zoomHome = L.Control.zoomHome();
   zoomHome.addTo(map);
@@ -51,9 +54,8 @@ function createMap(){
 
 
 //Import GeoJSON data
-function getData(map){
+function getCensusData(map){
   $.getJSON("data/Census Tracts/CensusTracts.geojson",function(censusTracts){
-  L.geoJson( censusTracts ).addTo(map);
 
   function getColor(d) {
     return d > 10000 ? '#000000' :
@@ -62,43 +64,27 @@ function getData(map){
            d > 4000  ? '#808080' :
            d > 2000   ? '#AAAAAA' :
            d > 1000   ? '#D5D5D5' :
-           d > 500   ? '#FFFFFF' :
-                      '#FFEDA0';
+           d <= 1000   ? '#FFFFFF' :
+                      '#FFF';
   }
   function style(feature) {
     return {
         fillColor: getColor(feature.properties.TransitData_Population),
-        weight: 2,
+        weight: .5,
         opacity: 1,
         color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.6
+        fillOpacity: 0.6,
+        zIndex: 2
     };
   }
 
-  L.geoJson(censusTracts, {style: style}).addTo(map);
+  L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   console.log(censusTracts)
   });
-  //       $.ajax(
-  //   "data/Census Tracts/CensusTracts.geojson",
-  //    {
-  //         dataType: "json",
-  //         success: function(response){
-  //             var geojsonMarkerOptions = {
-  //               fillColor: "#fff",
-  //               color: "#000",
-  //               weight: 1, 
-  //               opacity: 1
-  //             };
-  // //create a Leaflet GeoJSON layer and add it to the map
-  //             L.geoJson(response,{
-  //               pointToLayer: function(feature, latlng) {
-  //                 return L.circleMarker(latlng, geojsonMarkerOptions);
-  //               }
-  //             }).addTo(map);
-  //           }
-  //       });
-   $.ajax(
+};
+
+function getRailData(map){
+  var blueStations = $.ajax(
     "data/geojsons/BlueStations.geojson.json",
      {
           dataType: "json",
@@ -108,17 +94,18 @@ function getData(map){
                 fillColor: "#fff",
                 color: "#0053A0",
                 weight: 1, 
-                opacity: 1
+                opacity: 1,
+                zIndex: 10000000000000
               };
   //create a Leaflet GeoJSON layer and add it to the map
               L.geoJson(response,{
                 pointToLayer: function(feature, latlng) {
                   return L.circleMarker(latlng, geojsonMarkerOptions);
                 }
-              }).addTo(map);
+              }).addTo(map).bringToFront();
             }
         });
-   $.ajax(
+  var greenStations = $.ajax(
     "data/geojsons/GreenStations.geojson.json",
      {
           dataType: "json",
@@ -128,7 +115,8 @@ function getData(map){
                 fillColor: "#fff",
                 color: "#028244",
                 weight: 1, 
-                opacity: 1
+                opacity: 1,
+                zIndex: 6
               };
   //create a Leaflet GeoJSON layer and add it to the map
               L.geoJson(response,{
@@ -138,7 +126,7 @@ function getData(map){
               }).addTo(map);
             }
         });
-   $.ajax(
+  var redStations = $.ajax(
     "data/geojsons/RedStations.geojson.json",
      {
           dataType: "json",
@@ -148,7 +136,8 @@ function getData(map){
                 fillColor: "#fff",
                 color: "#ED1B2E",
                 weight: 1, 
-                opacity: 1
+                opacity: 1,
+                zIndex: 6
               };
   //create a Leaflet GeoJSON layer and add it to the map
               L.geoJson(response,{
@@ -158,7 +147,7 @@ function getData(map){
               }).addTo(map);
             }
         });
-   $.ajax(
+   var sharedStations =$.ajax(
     "data/geojsons/SharedStations.geojson.json",
      {
           dataType: "json",
@@ -168,17 +157,18 @@ function getData(map){
                 fillColor: "#000",
                 color: "fff",
                 weight: 1, 
-                opacity: 1
+                opacity: 1,
+                zIndex: 6
               };
   //create a Leaflet GeoJSON layer and add it to the map
               L.geoJson(response,{
                 pointToLayer: function(feature, latlng) {
                   return L.circleMarker(latlng, geojsonMarkerOptions);
                 }
-              }).addTo(map);
+              }).addTo(map).bringToFront();
             }
         });
-   $.ajax(
+  var northStarStations = $.ajax(
     "data/geojsons/NorthStarStations.geojson.json",
      {
           dataType: "json",
@@ -188,7 +178,8 @@ function getData(map){
                 fillColor: "#FFD204",
                 color: "#000066",
                 weight: 1, 
-                opacity: 1
+                opacity: 1,
+                zIndex: 6
               };
   //create a Leaflet GeoJSON layer and add it to the map
               L.geoJson(response,{
@@ -198,7 +189,7 @@ function getData(map){
               }).addTo(map);
             }
         });
-    $.ajax(
+  var proposedStations = $.ajax(
     "data/geojsons/ProposedStations.geojson.json",
      {
           dataType: "json",
@@ -208,7 +199,8 @@ function getData(map){
                 fillColor: "#fff",
                 color: "#000",
                 weight: 1, 
-                opacity: 1
+                opacity: 1,
+                zIndex: 6
               };
   //create a Leaflet GeoJSON layer and add it to the map
               L.geoJson(response,{
@@ -224,20 +216,21 @@ function getData(map){
     topoLayer.addTo(map);
   }
 
-  var metroCensusTracts = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-          color: '#8c8c8c',
-          weight: 1,
-          fillOpacity: 0
-      };
-    }
-  });
+  // var metroCensusTracts = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return { 
+  //         color: '#8c8c8c',
+  //         weight: 1,
+  //         fillOpacity: 0
+  //     };
+  //   }
+  // });
   var lakesRivers = L.geoJson (null,{
    style: function(feature) {
         return { 
           color: '#99ddff',
           weight: 1,
+          zIndex: 3
       };
     }
   });
@@ -246,7 +239,8 @@ function getData(map){
         return { 
           color: '#0053A0',
           weight: 3,
-          opacity: 1 
+          opacity: 1,
+          zIndex: 3 
         };
     }
   });
@@ -255,7 +249,8 @@ function getData(map){
         return { 
           color: '#ED1B2E', 
           weight: 3,
-          opacity: 1
+          opacity: 1,
+          zIndex: 3
         };
     }
   });
@@ -265,7 +260,8 @@ function getData(map){
             color: '#FBBD12', 
             weight: 3,
             dashArray: '5',
-            opacity: 1
+            opacity: 1,
+            zIndex: 3
         };
     }
   });
@@ -274,7 +270,8 @@ function getData(map){
         return { 
           color: '#028244',
           weight: 3,
-          opacity: 1
+          opacity: 1,
+          zIndex: 3
         };
     }
   });
@@ -284,7 +281,8 @@ function getData(map){
          color: ' #F68B1F',
          weight: 3,
          dashArray: '5',
-         opacity: 1 
+         opacity: 1,
+         zIndex: 3 
      };
     }
   });
@@ -293,7 +291,8 @@ function getData(map){
         return { 
           color: '#0053A0',
           weight: 1,
-          opacity: 1
+          opacity: 1,
+          zIndex: 5
         };
     }
   });
@@ -302,7 +301,8 @@ function getData(map){
         return { 
           color: '#FFD204',
           weight: 3,
-          opacity: 1
+          opacity: 1,
+          zIndex: 4
         };
     }
   });
@@ -311,7 +311,8 @@ function getData(map){
         return { 
           color: '#000066',
           weight: 5,
-          opacity: 1
+          opacity: 1,
+          zIndex: 3
         };
     }
   });
@@ -321,7 +322,8 @@ function getData(map){
             color: '#0053A0',
             weight: 3,
             dashArray: '5',
-            opacity: 1
+            opacity: 1,
+            zIndex: 3
       };
     }
   });
@@ -331,7 +333,8 @@ function getData(map){
             color: '#ED1B2E',
             weight: 3,
             dashArray: '5',
-            opacity: 1
+            opacity: 1,
+            zIndex: 3
      };
     }
   });
@@ -341,7 +344,8 @@ function getData(map){
             color: ' #028244',
             weight: 3,
             opacity: 1,
-            dashArray: '5'
+            dashArray: '5',
+            zIndex: 3
      };
     }
   });
