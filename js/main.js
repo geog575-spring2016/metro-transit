@@ -1,6 +1,7 @@
 /* Metro Transit */
 var populationLayer
 var ageLayer
+var X
 
 var attrArray = ["Median age (years)", "Households", "Kids Under 18", "Car, truck, or van - Mean travel time to work (minutes)", "Public transportation - Mean travel time to work (minutes)", "Drove Alone", "Carpooled", "Public transportation (excluding taxicab)", "Bicycle", "Walked", "Other means", "Worked at home", "White", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Islander", "Some other race alone", "Two or more races", "Median household income"]; 
 
@@ -79,11 +80,22 @@ function showDropdown () {
 
 $('#blank').click(function() {
   // removeLayers(map);
+  // map.removeLayer(ageLayer)
+  if (X === 1) {
+     map.removeLayer(ageLayer);
+  } else if (X===2){
+    map.removeLayer(populationLayer);
+
+  }
    
 
 });
 $('#population').click(function(){
       // removeLayers(map);
+  if (X === 1) {
+     map.removeLayer(ageLayer);
+  }
+ 
     getCensusDataPopulation(map);
       
 
@@ -91,6 +103,11 @@ $('#population').click(function(){
 
 $('#age').click(function(){
       // removeLayers(map);
+  if (X===2){
+    map.removeLayer(populationLayer);
+  }
+  
+  // map.removeLayer(ageLayer)
     getCensusDataAge(map);
 
 }); 
@@ -136,6 +153,7 @@ legend.addTo(map);
 
 //Import GeoJSON data
 function getCensusDataPopulation(map){
+  X=2
   $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
 
 
@@ -168,12 +186,13 @@ function getCensusDataPopulation(map){
     };
   }
 
-  populationLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   console.log(censusTracts)
   });
 };
 
 function getCensusDataAge(map){
+  X=1
   $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
 
 
@@ -182,7 +201,8 @@ function getCensusDataAge(map){
     '#404040',
     '#808080',
     '#BFBFBF',
-    '#fff'];
+    '#fff'
+  ];
 
   function getColor(d) {
     return d > 40 ? '#000000' :
@@ -205,7 +225,7 @@ function getCensusDataAge(map){
     };
   }
 
-  ageLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ ageLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   console.log(censusTracts)
   });
 };
@@ -516,10 +536,9 @@ function getRailData(map){
 
 };
 
-// function removeLayers (map) {
-//   map.removeLayer(populationLayer)
-//   map.removeLayer(ageLayer)
-// };
+
+ 
+
 
 
 
