@@ -76,43 +76,47 @@ function createMap(){
 //   }
 // }
 
-function showDropdown () {
+  function showDropdown () {
 
-$('#blank').click(function() {
-  // removeLayers(map);
-  // map.removeLayer(ageLayer)
-  if (X === 1) {
-     map.removeLayer(ageLayer);
-  } else if (X===2){
-    map.removeLayer(populationLayer);
+    $('#blank').click(function() {
+    // removeLayers(map);
+    // map.removeLayer(ageLayer)
+      if (X === 1) {
+         map.removeLayer(ageLayer);
+      } else if (X===2){
+        map.removeLayer(populationLayer);
+      }
+    });
 
-  }
-   
+    $('#population').click(function(){
+        // removeLayers(map);
+      if (X === 1) {
+         map.removeLayer(ageLayer);
+      }
+      getCensusDataPopulation(map);
+    });
 
-});
-$('#population').click(function(){
-      // removeLayers(map);
-  if (X === 1) {
-     map.removeLayer(ageLayer);
-  }
- 
-    getCensusDataPopulation(map);
-      
+    $('#age').click(function(){
+        // removeLayers(map);
+    if (X===2){
+      map.removeLayer(populationLayer)
+      map.removeLayer(whiteLayer)
+    }
+    // map.removeLayer(ageLayer)
+      getCensusDataAge(map);
+    }); 
 
-});
+    $('#white').click(function(){
+        // removeLayers(map);
+    if (X===3){
+      map.removeLayer(populationLayer)
+      map.removeLayer(ageLayer);
+    }
+    // map.removeLayer(ageLayer)
+      getCensusDataWhite(map);
+    }); 
 
-$('#age').click(function(){
-      // removeLayers(map);
-  if (X===2){
-    map.removeLayer(populationLayer);
-  }
-  
-  // map.removeLayer(ageLayer)
-    getCensusDataAge(map);
-
-}); 
-
-};
+  };
 
 //end of setmap function
 };
@@ -156,21 +160,11 @@ function getCensusDataPopulation(map){
   X=2
   $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
 
-
-  var hues = [
-    '#000',
-    '#404040',
-    '#808080',
-    '#BFBFBF',
-    '#fff'];
-
   function getColor(d) {
     return d > 10000 ? '#000000' :
-           d > 8000  ? '#2B2B2B' :
-           d > 6000  ? '#555555' :
+           d > 6000  ? '#404040' :
            d > 4000  ? '#808080' :
-           d > 2000   ? '#AAAAAA' :
-           d > 1000   ? '#D5D5D5' :
+           d > 1000   ? '#BFBFBF' :
            d <= 1000   ? '#FFFFFF' :
                       '#FFF';
   }
@@ -187,7 +181,6 @@ function getCensusDataPopulation(map){
   }
 
 L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
-  console.log(censusTracts)
   });
 };
 
@@ -195,23 +188,12 @@ function getCensusDataAge(map){
   X=1
   $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
 
-
-  var hues = [
-    '#000',
-    '#404040',
-    '#808080',
-    '#BFBFBF',
-    '#fff'
-  ];
-
   function getColor(d) {
     return d > 40 ? '#000000' :
-           d > 39  ? '#2B2B2B' :
-           d > 38  ? '#555555' :
+           d > 38  ? '#404040' :
            d > 37  ? '#808080' :
-           d > 36   ? '#AAAAAA' :
-           d > 35   ? '#D5D5D5' :
-           d <= 35   ? '#FFFFFF' :
+           d > 34   ? '#BFBFBF' :
+           d <= 34   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -226,9 +208,35 @@ function getCensusDataAge(map){
   }
 
  ageLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
-  console.log(censusTracts)
   });
 };
+
+// function getCensusDataWhite(map){
+//   X=3
+//   $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
+
+//   function getColor(d) {
+//     return d > 98 ? '#000000' :
+//            d > 95  ? '#404040' :
+//            d > 90  ? '#808080' :
+//            d > 85   ? '#BFBFBF' :
+//            d <= 80   ? '#FFFFFF' :
+//                       '#FFF';
+//   }
+//   function style(feature) {
+//     return {
+//         fillColor: getColor(feature.properties.WhiteNormalized),
+//         weight: .5,
+//         opacity: 1,
+//         color: 'white',
+//         fillOpacity: 0.6,
+//         zIndex: 2
+//     };
+//   }
+
+//  whiteLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+//   });
+// };
 
 function getRailData(map){
   var blueStations = $.ajax(
