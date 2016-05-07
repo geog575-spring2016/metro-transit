@@ -57,6 +57,19 @@ function createMap(){
 
   showDropdown();
 
+
+  var walkable = L.circle([44.938992, -93.178415], 10000, {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5
+  })
+  
+  var walkOverlay = {
+    "Walkable Distance": walkable
+  };
+
+  L.control.layers(null, walkOverlay).addTo(map);
+
 // function showDropdown() {
 //     document.getElementById("myDropdown").classList.toggle("show");
 // }
@@ -158,7 +171,7 @@ legend.addTo(map);
 //Import GeoJSON data
 function getCensusDataPopulation(map){
   X=2
-  $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
+  $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
     return d > 10000 ? '#000000' :
@@ -186,7 +199,7 @@ L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
 
 function getCensusDataAge(map){
   X=1
-  $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
+  $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
     return d > 40 ? '#000000' :
@@ -213,7 +226,7 @@ function getCensusDataAge(map){
 
 // function getCensusDataWhite(map){
 //   X=3
-//   $.getJSON("data/Census Tracts/CensusTracts3.geojson",function(censusTracts){
+//   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
 //   function getColor(d) {
 //     return d > 98 ? '#000000' :
