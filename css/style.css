@@ -43,6 +43,16 @@ header {
 	float: right;
 }
 
+
+#footer {
+	height: 50px;
+	width: 100%;
+	font-family: Georgia;
+	color: black;
+	margin: 15px;
+
+}
+
 .tracts {
 	fill: none;
 	stroke: #737373;
