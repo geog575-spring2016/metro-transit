@@ -57,18 +57,13 @@ function createMap(){
 
   showDropdown();
 
+  bufferButton
 
-  var walkable = L.circle([44.938992, -93.178415], 10000, {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5
-  })
-  
-  var walkOverlay = {
-    "Walkable Distance": walkable
-  };
+  // var walkOverlay = {
+  //   "Walkable Distance": walkable,
+  // };
 
-  L.control.layers(null, walkOverlay).addTo(map);
+  // L.control.layers(null, walkOverlay).addTo(map);
 
 // function showDropdown() {
 //     document.getElementById("myDropdown").classList.toggle("show");
@@ -164,11 +159,29 @@ return div;
 legend.addTo(map);
 };
 
+function bufferButton(map, data){
+  $('#map').append('<button class="buffer"> </button>');
+
+  $('buffer').click(function(){
+    getBufferData(map);
+  })
+}
+
 
 
 
 
 //Import GeoJSON data
+function getBufferData(map){
+  var walkable = $.ajax("data/geojsons/800both.geojson", {
+    dataType: "json",
+    success: function(data){
+
+      L.geoJson(data).addTo(map)
+    }
+  })
+}
+
 function getCensusDataPopulation(map){
   X=2
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
