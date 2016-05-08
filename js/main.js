@@ -351,7 +351,7 @@ function getCensusDataPopulation(map){
   function style(feature) {
      console.log (feature);
     return {
-        fillColor: getColor(feature.properties.Population),
+        fillColor: getColor(feature.properties.PopArea),
         weight: .5,
         opacity: 1,
         color: 'white',
