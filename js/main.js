@@ -76,19 +76,168 @@ function createMap(){
   showDropdown(map);
 
   
+  var goldLine = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#FBBD12', 
+            weight: 3,
+            dashArray: '5',
+            opacity: 1,
+            zIndex: 3
+        };
+    }
+  });
+  var orangeLine = L.geoJson (null,{
+   style: function(feature) {
+        return {
+         color: ' #F68B1F',
+         weight: 3,
+         dashArray: '5',
+         opacity: 1,
+         zIndex: 3 
+     };
+    }
+  });
+  var blueLineExt = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#0053A0',
+            weight: 3,
+            dashArray: '5',
+            opacity: 1,
+            zIndex: 3
+      };
+    }
+  });
+  var redLineExt = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#ED1B2E',
+            weight: 3,
+            dashArray: '5',
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var greenLineExt = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: ' #028244',
+            weight: 3,
+            opacity: 1,
+            dashArray: '5',
+            zIndex: 3
+     };
+    }
+  });
 
+  var futurelinefiles = omnivore.topojson('data/topojsons/GoldLine.topojson', null, goldLine)
+                    omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
+                    omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
+                    omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
+                    omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
 
-  var walkable = L.circle([44.938992, -93.178415], 10000, {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5
-  })
-  
-  var walkOverlay = {
-    "Walkable Distance": walkable
-  };
+  var futurelines = L.easyButton({
+    states: [{
+      stateName: 'add-markers',
+      icon: 'fa-subway',
+      title: 'Add future lines',
+      onClick: function(control) {
+        map.addLayer(goldLine);
+        map.addLayer(orangeLine);
+        map.addLayer(blueLineExt);
+        map.addLayer(greenLineExt);
+        map.addLayer(redLineExt);
+        control.state('remove-markers');
+      }
+    }, {
+      icon: 'fa-undo',
+      stateName: 'remove-markers',
+      onClick: function(control) {
+        map.removeLayer(goldLine);
+        map.removeLayer(orangeLine);
+        map.removeLayer(blueLineExt);
+        map.removeLayer(greenLineExt);
+        map.removeLayer(redLineExt);
+        control.state('add-markers');
+      },
+      title: 'remove markers'
+    }]
+  });
+  futurelines.addTo(map);
 
-  L.control.layers(null, walkOverlay).addTo(map);
+  var walkable = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: ' #cc99ff',
+            fillColor: '#cc99ff',
+            fillOpacity: .5,
+            weight: 2,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+
+  var walkexisting = omnivore.topojson('data/topojsons/800existing.topojson', null, walkable)
+
+  var walkablebutton = L.easyButton({
+    states: [{
+      stateName: 'add-markers',
+      icon: 'fa-user',
+      title: 'Areas within walking distance of station',
+      onClick: function(control) {
+        map.addLayer(walkable);
+        control.state('remove-markers');
+      }
+    }, {
+      icon: 'fa-undo',
+      stateName: 'remove-markers',
+      onClick: function(control) {
+        map.removeLayer(walkable);
+        control.state('add-markers');
+      },
+      title: 'remove markers'
+    }]
+  });
+  walkablebutton.addTo(map);
+
+  var futurewalkable = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: ' #ffccff',
+            fillColor: '#ffccff',
+            fillOpacity: .5,
+            weight: 2,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+
+  var walkfuture = omnivore.topojson('data/topojsons/800both.topojson', null, futurewalkable)
+
+  var futurewalkablebutton = L.easyButton({
+    states: [{
+      stateName: 'add-markers',
+      icon: 'fa-user-plus',
+      title: 'Areas within walking distance of future station',
+      onClick: function(control) {
+        map.addLayer(futurewalkable);
+        control.state('remove-markers');
+      }
+    }, {
+      icon: 'fa-undo',
+      stateName: 'remove-markers',
+      onClick: function(control) {
+        map.removeLayer(futurewalkable);
+        control.state('add-markers');
+      },
+      title: 'remove markers'
+    }]
+  });
+  futurewalkablebutton.addTo(map);
 
 // function showDropdown() {
 //     document.getElementById("myDropdown").classList.toggle("show");
@@ -933,33 +1082,33 @@ function getRailData(map){
               }).addTo(map);
             }
         });
-  var proposedStations = $.ajax(
-    "data/geojsons/ProposedStations.geojson.json",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 3,
-                fillColor: "#000",
-                fillOpacity: 1,
-                color: "#fff",
-                weight: 1, 
-                opacity: 1,
-                zIndex: 6
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map);
-            }
-        });
+  // var proposedStations = $.ajax(
+  //   "data/geojsons/ProposedStations.geojson.json",
+  //    {
+  //         dataType: "json",
+  //         success: function(response){
+  //             var geojsonMarkerOptions = {
+  //               radius: 3,
+  //               fillColor: "#000",
+  //               fillOpacity: 1,
+  //               color: "#fff",
+  //               weight: 1, 
+  //               opacity: 1,
+  //               zIndex: 6
+  //             };
+  // //create a Leaflet GeoJSON layer and add it to the map
+  //             L.geoJson(response,{
+  //               pointToLayer: function(feature, latlng) {
+  //                 return L.circleMarker(latlng, geojsonMarkerOptions);
+  //               }
+  //             }).addTo(map);
+  //           }
+  //       });
 
-  function addTopoData(topoData){  
-    topoLayer.addData(topoData);
-    topoLayer.addTo(map);
-  }
+  // function addTopoData(topoData){  
+  //   topoLayer.addData(topoData);
+  //   topoLayer.addTo(map);
+  // }
 
   // var metroCensusTracts = L.geoJson (null,{
   //  style: function(feature) {
@@ -1002,17 +1151,17 @@ function getRailData(map){
         };
     }
   });
-  var goldLine = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-            color: '#FBBD12', 
-            weight: 3,
-            dashArray: '5',
-            opacity: 1,
-            zIndex: 3
-        };
-    }
-  });
+  // var goldLine = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return { 
+  //           color: '#FBBD12', 
+  //           weight: 3,
+  //           dashArray: '5',
+  //           opacity: 1,
+  //           zIndex: 3
+  //       };
+  //   }
+  // });
   var greenLine = L.geoJson (null,{
    style: function(feature) {
         return { 
@@ -1023,17 +1172,17 @@ function getRailData(map){
         };
     }
   });
-  var orangeLine = L.geoJson (null,{
-   style: function(feature) {
-        return {
-         color: ' #F68B1F',
-         weight: 3,
-         dashArray: '5',
-         opacity: 1,
-         zIndex: 3 
-     };
-    }
-  });
+  // var orangeLine = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return {
+  //        color: ' #F68B1F',
+  //        weight: 3,
+  //        dashArray: '5',
+  //        opacity: 1,
+  //        zIndex: 3 
+  //    };
+  //   }
+  // });
   var northStarLine = L.geoJson (null,{
    style: function(feature) {
         return { 
@@ -1064,39 +1213,39 @@ function getRailData(map){
         };
     }
   });
-  var blueLineExt = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-            color: '#0053A0',
-            weight: 3,
-            dashArray: '5',
-            opacity: 1,
-            zIndex: 3
-      };
-    }
-  });
-  var redLineExt = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-            color: '#ED1B2E',
-            weight: 3,
-            dashArray: '5',
-            opacity: 1,
-            zIndex: 3
-     };
-    }
-  });
-  var greenLineExt = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-            color: ' #028244',
-            weight: 3,
-            opacity: 1,
-            dashArray: '5',
-            zIndex: 3
-     };
-    }
-  });
+  // var blueLineExt = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return { 
+  //           color: '#0053A0',
+  //           weight: 3,
+  //           dashArray: '5',
+  //           opacity: 1,
+  //           zIndex: 3
+  //     };
+  //   }
+  // });
+  // var redLineExt = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return { 
+  //           color: '#ED1B2E',
+  //           weight: 3,
+  //           dashArray: '5',
+  //           opacity: 1,
+  //           zIndex: 3
+  //    };
+  //   }
+  // });
+  // var greenLineExt = L.geoJson (null,{
+  //  style: function(feature) {
+  //       return { 
+  //           color: ' #028244',
+  //           weight: 3,
+  //           opacity: 1,
+  //           dashArray: '5',
+  //           zIndex: 3
+  //    };
+  //   }
+  // });
 
   var railLines =
   omnivore.topojson('data/topojsons/LakesAndRivers.topojson', null, lakesRivers)
@@ -1109,16 +1258,16 @@ function getRailData(map){
     .addTo(map);
   omnivore.topojson('data/topojsons/GreenLine.topojson', null, greenLine)
     .addTo(map);
-  omnivore.topojson('data/topojsons/GoldLine.topojson', null, goldLine)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
-    .addTo(map);
+  // omnivore.topojson('data/topojsons/GoldLine.topojson', null, goldLine)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
+  //   .addTo(map);
+  // omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
+  //   .addTo(map);
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine)
     .addTo(map);
   omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine2)
