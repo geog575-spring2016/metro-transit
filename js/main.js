@@ -33,15 +33,15 @@ function createMap(){
   bounds = L.latLngBounds(southWest, northEast);
   
 	var map = L.map('map', {
-		center: [44.958401, -93.206810],
+		center: [44.958401, -93.226810],
 		zoom: 11,
     zoomControl: false,
     scrollWheelZoom: false,
     maxBounds: bounds
 	});
 
-	//mapbox://styles/gvriezen/cinjd2amr001gadniy7zysc61
-	//pk.eyJ1IjoiZ3ZyaWV6ZW4iLCJhIjoiY2lsMTJvZ3BtMmZyeHYybTNocm1kZmg0eiJ9.mW_JTzHQbMfovynNVqHaZA
+  map.createPane('labels');
+  map.getPane('labels').style.zIndex = 650;
 
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -57,7 +57,8 @@ function createMap(){
     subdomains: 'abcd',
     minZoom: 10,
     maxZoom: 14,
-    ext: 'png'
+    ext: 'png',
+    pane: 'labels'
   }).addTo(map);
 
   getRailData(map);
@@ -192,7 +193,7 @@ function createMap(){
         return { 
             color: ' #cc99ff',
             fillColor: '#cc99ff',
-            fillOpacity: .5,
+            fillOpacity: .3,
             weight: 2,
             opacity: 1,
             zIndex: 3
@@ -228,7 +229,7 @@ function createMap(){
         return { 
             color: ' #ffccff',
             fillColor: '#ffccff',
-            fillOpacity: .5,
+            fillOpacity: .3,
             weight: 2,
             opacity: 1,
             zIndex: 3
