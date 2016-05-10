@@ -183,7 +183,7 @@ function createMap(){
         map.removeLayer(redLineExt);
         control.state('add-markers');
       },
-      title: 'remove markers'
+      title: 'Remove future lines'
     }]
   });
   futurelines.addTo(map);
@@ -259,7 +259,7 @@ function createMap(){
     states: [{
       stateName: 'add-markers',
       icon: 'fa-user',
-      title: 'Areas within walking distance of station',
+      title: 'Add areas within walking distance of station',
       onClick: function(control) {
         map.addLayer(walkblue);
         map.addLayer(walkgreen);
@@ -279,7 +279,7 @@ function createMap(){
         map.removeLayer(walkshared);
         control.state('add-markers');
       },
-      title: 'remove markers'
+      title: 'Remove areas within walking distance of station'
     }]
   });
   walkablebutton.addTo(map);
@@ -355,7 +355,7 @@ function createMap(){
     states: [{
       stateName: 'add-markers',
       icon: 'fa-user-plus',
-      title: 'Areas within walking distance of future station',
+      title: 'Add areas within walking distance of future station',
       onClick: function(control) {
         map.addLayer(walkblueext);
         map.addLayer(walkgreenext);
@@ -375,7 +375,7 @@ function createMap(){
         map.removeLayer(walkgold);
         control.state('add-markers');
       },
-      title: 'remove markers'
+      title: 'Remove areas within walking distance of future station'
     }]
   });
   futurewalkablebutton.addTo(map);
