@@ -15,7 +15,7 @@ var bikesLayer
 var walkedLayer
 var otherCommuteLayer
 var homeLayer
-var publicTransportationLayer
+var publicTransporationLayer
 var vehicleLayer
 var householdsLayer
 var kidsLayer
@@ -555,7 +555,7 @@ function removeAllLayers (map) {
   } else if (X===14){
     map.removeLayer(homeLayer);
   } else if (X===15){
-    map.removeLayer(publicTransportationLayer);
+    map.removeLayer(publicTransporationLayer);
   } else if (X===16){
     map.removeLayer(vehicleLayer);
   } else if (X===17){
@@ -588,7 +588,7 @@ function removeAllLayers (map) {
 legend.onAdd = function (map) {
 var div = L.DomUtil.create('div', 'info legend');
 div.innerHTML = 
-'<select><option id="blank">--</option><option id="population">Population per Square Mile</option><option id="age">Median Age</option><option id ="white">White</option><option id ="black">Black</option><option id ="asian">Asian</option><option id ="other">Other Race or Two or More Races</option><option id ="vehicle">Mean Travel Time to Work - Vehicle</option><option id ="public">Mean Travel Time To Work - Public Transit</option><option id ="alone">Drove Alone</option><option id ="carpool">Carpool</option><option id ="publictransit">Public Transit</option><option id ="bike">Bike</option><option id ="walked">Walked</option><option id ="alternate">Other Commute Type</option><option id ="home">Work From Home</option><option id ="household">Households</option><option id ="kids">Kids</option><option id ="income">Median Household Income</option></select>';
+'<select><option id="blank">--</option><option id="population">Population / mi\u00B2</option><option id="age">Median Age (years)</option><option id ="white">White</option><option id ="black">Black</option><option id ="asian">Asian</option><option id ="other">Other</option><option id ="vehicle">Mean Travel Time to Work - Vehicle</option><option id ="public">Mean Travel Time To Work - Public Transit</option><option id ="alone">Drove Alone</option><option id ="carpool">Carpool</option><option id ="publictransit">Public Transit</option><option id ="bike">Bike</option><option id ="walked">Walked</option><option id ="alternate">Other Commute Type</option><option id ="home">Work From Home</option><option id ="household">Households</option><option id ="kids">Kids</option><option id ="income">Median Annual Household Income ($)</option></select>';
 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 return div;
 
@@ -610,7 +610,7 @@ function getCensusDataPopulation(map){
            d > 5500  ? '#808080' :
            d > 2634   ? '#BFBFBF' :
            d <= 2634   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
      console.log (feature);
@@ -641,7 +641,7 @@ function getCensusDataAge(map){
            d > 34  ? '#808080' :
            d > 28   ? '#BFBFBF' :
            d <= 28   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -673,7 +673,7 @@ function getCensusDataWhite(map){
            d > 59  ? '#808080' :
            d > 36   ? '#BFBFBF' :
            d <= 36   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -704,7 +704,7 @@ function getCensusDataBlack(map){
            d > 13  ? '#808080' :
            d > 4   ? '#BFBFBF' :
            d <= 4   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -735,7 +735,7 @@ function getCensusDataAsian(map){
            d > 8  ? '#808080' :
            d > 3   ? '#BFBFBF' :
            d <= 3   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -798,7 +798,7 @@ function getCensusDataIncome(map){
            d > 61660  ? '#808080' :
            d > 39710   ? '#BFBFBF' :
            d <= 39710   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -830,7 +830,7 @@ function getCensusDataDroveAlone(map){
            d > 36  ? '#808080' :
            d > 22   ? '#BFBFBF' :
            d <= 22   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -860,7 +860,7 @@ function getCensusDataCarpool(map){
            d > 4  ? '#808080' :
            d > 2   ? '#BFBFBF' :
            d <= 2   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -891,7 +891,7 @@ function getCensusDataPublicTransit(map){
            d > 3  ? '#808080' :
            d > 1   ? '#BFBFBF' :
            d <= 1   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -921,7 +921,7 @@ function getCensusDataBikes(map){
            d > 1.5  ? '#808080' :
            d > 0.5   ? '#BFBFBF' :
            d <= 0.5   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -952,7 +952,7 @@ function getCensusDataWalked(map){
            d > 2  ? '#808080' :
            d > 0.8   ? '#BFBFBF' :
            d <= 0.8   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -983,7 +983,7 @@ function getCensusDataOtherCommute(map){
            d > 0.37  ? '#808080' :
            d > 0.12   ? '#BFBFBF' :
            d <= 0.12   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -1014,7 +1014,7 @@ function getCensusDataWorkedFromHome(map){
            d > 2  ? '#808080' :
            d > 1   ? '#BFBFBF' :
            d <= 1   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -1047,8 +1047,7 @@ function getCensusDataPublicTransportation(map){
            d > 90  ? '#808080' :
            d > 85   ? '#BFBFBF' :
            d <= 80   ? '#FFFFFF' :
-                      '#fcf8e8';
-
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -1061,7 +1060,7 @@ function getCensusDataPublicTransportation(map){
     };
   }
 
- publicTransportationLayer = L.geoJson(censusTracts, {
+ publicTransporationLayer = L.geoJson(censusTracts, {
   style: style,
   onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
@@ -1078,7 +1077,7 @@ function getCensusDataVehicle(map){
            d > 22  ? '#808080' :
            d > 19   ? '#BFBFBF' :
            d <= 19   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -1109,7 +1108,7 @@ function getCensusDataHouseholds(map){
            d > 36  ? '#808080' :
            d > 16   ? '#BFBFBF' :
            d <= 16   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
@@ -1139,7 +1138,7 @@ function getCensusDataKids(map){
            d > 8  ? '#808080' :
            d > 4   ? '#BFBFBF' :
            d <= 4   ? '#FFFFFF' :
-                      '#fcf8e8';
+                      '#FFF';
   }
   function style(feature) {
     return {
