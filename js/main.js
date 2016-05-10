@@ -476,6 +476,16 @@ return div;
 legend.addTo(map);
 };
 
+function updateLegend(){
+
+  if (X===1){
+    $("#label1").append($("<p>0-</p>" + "<p>2,630</p>"))
+    $("#label2").append($("<p>2,630-</p>" + "<p>5,500</p>"))
+    $("#label3").append($("<p>5,500-</p>" + "<p>9,500</p>"))
+    $("#label4").append($("<p>9,500-</p>" + "<p>15,550</p>"))
+    $("#label5").append($("<p>15,550-</p>" + "<p>26,212</p>"))
+  }
+}
 
 
 //Import GeoJSON data
@@ -492,7 +502,7 @@ function getCensusDataPopulation(map){
                       '#FFF';
   }
   function style(feature) {
-     console.log (feature);
+     
     return {
         fillColor: getColor(feature.properties.PopArea),
         weight: .5,
@@ -505,6 +515,8 @@ function getCensusDataPopulation(map){
 
 populationLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   });
+
+  updateLegend();
 };
 
 function getCensusDataAge(map){
