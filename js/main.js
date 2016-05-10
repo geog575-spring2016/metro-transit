@@ -188,20 +188,72 @@ function createMap(){
   });
   futurelines.addTo(map);
 
-  var walkable = L.geoJson (null,{
+  var walkblue = L.geoJson (null,{
    style: function(feature) {
         return { 
-            color: ' #cc99ff',
-            fillColor: '#cc99ff',
+            color: '#0053A0',
+            fillColor: '#0053A0',
             fillOpacity: .3,
-            weight: 2,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkgreen = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#028244',
+            fillColor: '#028244',
+            fillOpacity: .3,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkred = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#ED1B2E',
+            fillColor: '#ED1B2E',
+            fillOpacity: .3,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walknorthstar = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#000066',
+            fillColor: '#000066',
+            fillOpacity: .3,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkshared = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#016B72',
+            fillColor: '#016B72',
+            fillOpacity: .3,
+            weight: 1,
             opacity: 1,
             zIndex: 3
      };
     }
   });
 
-  var walkexisting = omnivore.topojson('data/topojsons/800existing.topojson', null, walkable)
+  var walkexisting = omnivore.topojson('data/topojsons/WalkableBlue.topojson', null, walkblue)
+                     omnivore.topojson('data/topojsons/WalkableGreen.topojson', null, walkgreen)
+                     omnivore.topojson('data/topojsons/WalkableRed.topojson', null, walkred)
+                     omnivore.topojson('data/topojsons/WalkableNorthStar.topojson', null, walknorthstar)
+                     omnivore.topojson('data/topojsons/WalkableShared.topojson', null, walkshared) 
 
   var walkablebutton = L.easyButton({
     states: [{
@@ -209,14 +261,22 @@ function createMap(){
       icon: 'fa-user',
       title: 'Areas within walking distance of station',
       onClick: function(control) {
-        map.addLayer(walkable);
+        map.addLayer(walkblue);
+        map.addLayer(walkgreen);
+        map.addLayer(walkred);
+        map.addLayer(walknorthstar);
+        map.addLayer(walkshared);
         control.state('remove-markers');
       }
     }, {
       icon: 'fa-undo',
       stateName: 'remove-markers',
       onClick: function(control) {
-        map.removeLayer(walkable);
+        map.removeLayer(walkblue);
+        map.removeLayer(walkgreen);
+        map.removeLayer(walkred);
+        map.removeLayer(walknorthstar);
+        map.removeLayer(walkshared);
         control.state('add-markers');
       },
       title: 'remove markers'
@@ -224,20 +284,72 @@ function createMap(){
   });
   walkablebutton.addTo(map);
 
-  var futurewalkable = L.geoJson (null,{
+  var walkblueext = L.geoJson (null,{
    style: function(feature) {
         return { 
-            color: ' #ffccff',
-            fillColor: '#ffccff',
+            color: '#0053A0',
+            fillColor: '#0053A0',
             fillOpacity: .3,
-            weight: 2,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkgreenext = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#028244',
+            fillColor: '#028244',
+            fillOpacity: .3,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkredext = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#ED1B2E',
+            fillColor: '#ED1B2E',
+            fillOpacity: .3,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkorange = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#F68B1F',
+            fillColor: '#F68B1F',
+            fillOpacity: .3,
+            weight: 1,
+            opacity: 1,
+            zIndex: 3
+     };
+    }
+  });
+  var walkgold = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+            color: '#FBBD12',
+            fillColor: '#FBBD12',
+            fillOpacity: .3,
+            weight: 1,
             opacity: 1,
             zIndex: 3
      };
     }
   });
 
-  var walkfuture = omnivore.topojson('data/topojsons/800both.topojson', null, futurewalkable)
+  var walkfuture = omnivore.topojson('data/topojsons/WalkableBlueExt.topojson', null, walkblueext)
+                   omnivore.topojson('data/topojsons/WalkableGreenExt.topojson', null, walkgreenext)
+                   omnivore.topojson('data/topojsons/WalkableRedExt.topojson', null, walkredext)
+                   omnivore.topojson('data/topojsons/WalkableOrange.topojson', null, walkorange)
+                   omnivore.topojson('data/topojsons/WalkableGold.topojson', null, walkgold) 
 
   var futurewalkablebutton = L.easyButton({
     states: [{
@@ -245,14 +357,22 @@ function createMap(){
       icon: 'fa-user-plus',
       title: 'Areas within walking distance of future station',
       onClick: function(control) {
-        map.addLayer(futurewalkable);
+        map.addLayer(walkblueext);
+        map.addLayer(walkgreenext);
+        map.addLayer(walkredext);
+        map.addLayer(walkorange);
+        map.addLayer(walkgold);
         control.state('remove-markers');
       }
     }, {
       icon: 'fa-undo',
       stateName: 'remove-markers',
       onClick: function(control) {
-        map.removeLayer(futurewalkable);
+        map.removeLayer(walkblueext);
+        map.removeLayer(walkgreenext);
+        map.removeLayer(walkredext);
+        map.removeLayer(walkorange);
+        map.removeLayer(walkgold);
         control.state('add-markers');
       },
       title: 'remove markers'
