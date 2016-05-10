@@ -504,7 +504,10 @@ function getCensusDataPopulation(map){
     };
   }
 
-populationLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+populationLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -531,7 +534,10 @@ function getCensusDataAge(map){
     };
   }
 
- ageLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ ageLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -560,7 +566,10 @@ function getCensusDataWhite(map){
     };
   }
 
- whiteLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ whiteLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -588,7 +597,10 @@ function getCensusDataBlack(map){
     };
   }
 
- blackLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ blackLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -616,7 +628,10 @@ function getCensusDataAsian(map){
     };
   }
 
- asianLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ asianLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -644,7 +659,10 @@ function getCensusDataOtherRace(map){
     };
   }
 
- otherRaceLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ otherRaceLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -673,7 +691,10 @@ function getCensusDataIncome(map){
     };
   }
 
- mhiLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ mhiLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature,
+}).addTo(map).bringToBack();
   });
 };
 
@@ -702,7 +723,10 @@ function getCensusDataDroveAlone(map){
     };
   }
 
- droveAloneLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ droveAloneLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -729,7 +753,10 @@ function getCensusDataCarpool(map){
     };
   }
 
- carpoolLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ carpoolLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -757,7 +784,10 @@ function getCensusDataPublicTransit(map){
     };
   }
 
- publicTransitLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ publicTransitLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -784,7 +814,10 @@ function getCensusDataBikes(map){
     };
   }
 
- bikesLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ bikesLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature,
+}).addTo(map).bringToBack();
   });
 };
 
@@ -812,7 +845,10 @@ function getCensusDataWalked(map){
     };
   }
 
- walkedLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ walkedLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -840,7 +876,10 @@ function getCensusDataOtherCommute(map){
     };
   }
 
- otherCommuteLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ otherCommuteLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -868,7 +907,10 @@ function getCensusDataWorkedFromHome(map){
     };
   }
 
- homeLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ homeLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature,
+}).addTo(map).bringToBack();
   });
 };
 
@@ -898,7 +940,10 @@ function getCensusDataPublicTransportation(map){
     };
   }
 
- publicTransporationLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ publicTransporationLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -925,7 +970,10 @@ function getCensusDataVehicle(map){
     };
   }
 
- vehicleLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ vehicleLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 // get data for household type
@@ -953,7 +1001,10 @@ function getCensusDataHouseholds(map){
     };
   }
 
- householdsLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ householdsLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
@@ -980,11 +1031,81 @@ function getCensusDataKids(map){
     };
   }
 
- kidsLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
+ kidsLayer = L.geoJson(censusTracts, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map).bringToBack();
   });
 };
 
 //end of censustracts3 geojson data
+
+//highlight functions
+
+function highlightFeature (e) {
+  var layer = e.target;
+
+  layer.setStyle({
+    weight: 4,
+    color: '#61bf1a',
+    dashArray: '',
+    fillOpacity: 0.7,
+  });
+}
+
+function resetHighlight (e) {
+   if (X===1){
+  populationLayer.resetStyle(e.target);
+} else if (X===2){
+  ageLayer.resetStyle(e.target);
+} else if (X===3){
+  whiteLayer.resetStyle(e.target);
+} else if (X===4){
+    blackLayer.resetStyle(e.target);
+} else if (X===5){
+    asianLayer.resetStyle(e.target);
+} else if (X===6){
+  otherRaceLayer.resetStyle(e.target);
+} else if (X===7){
+   mhiLayer.resetStyle(e.target);
+} else if (X===8){
+   droveAloneLayer.resetStyle(e.target);
+} else if (X===9){
+   carpoolLayer.resetStyle(e.target);
+} else if (X===10){
+   publicTransitLayer.resetStyle(e.target);
+} else if (X===11){
+   bikesLayer.resetStyle(e.target);
+} else if (X===12){
+   walkedLayer.resetStyle(e.target);
+} else if (X===13){
+   otherCommuteLayer.resetStyle(e.target);
+} else if (X===14){
+   homeLayer.resetStyle(e.target);
+} else if (X===15){
+   publicTransportationLayer.resetStyle(e.target);
+} else if (X===16){
+   vehicleLayer.resetStyle(e.target);
+} else if (X===17){
+   householdsLayer.resetStyle(e.target);
+} else if (X===18){
+   kidsLayer.resetStyle(e.target);
+}
+
+
+};
+
+function onEachFeature (feature, layer) {
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight
+  });
+}
+
+//
+
+
+
 
 //get data for stations and make markers
 
