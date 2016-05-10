@@ -10,7 +10,7 @@ header {
 	text-align: center;
 }
 
-p {
+.legendLabel {
 	margin: 0;
 	font-family: georgia;
 

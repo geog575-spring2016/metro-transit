@@ -479,12 +479,30 @@ legend.addTo(map);
 function updateLegend(){
 
   if (X===1){
-    $("#label1").append($("<p>0-</p>" + "<p>2,630</p>"))
-    $("#label2").append($("<p>2,630-</p>" + "<p>5,500</p>"))
-    $("#label3").append($("<p>5,500-</p>" + "<p>9,500</p>"))
-    $("#label4").append($("<p>9,500-</p>" + "<p>15,550</p>"))
-    $("#label5").append($("<p>15,550-</p>" + "<p>26,212</p>"))
+    removeLegendLabels();
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>2,630</p>"))
+    $("#label2").append($("<p class='legendLabel'>2,630-</p>" + "<p class='legendLabel'>5,500</p>"))
+    $("#label3").append($("<p class='legendLabel'>5,500-</p>" + "<p class='legendLabel'>9,500</p>"))
+    $("#label4").append($("<p class='legendLabel'>9,500-</p>" + "<p class='legendLabel'>15,550</p>"))
+    $("#label5").append($("<p class='legendLabel'>15,550-</p>" + "<p class='legendLabel'>26,212</p>"))
+  } else if (X===2){
+    removeLegendLabels();
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>28</p>"))
+    $("#label2").append($("<p class='legendLabel'>28-</p>" + "<p class='legendLabel'>34</p>"))
+    $("#label3").append($("<p class='legendLabel'>34-</p>" + "<p class='legendLabel'>39</p>"))
+    $("#label4").append($("<p class='legendLabel'>39-</p>" + "<p class='legendLabel'>44</p>"))
+    $("#label5").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>62</p>"))
   }
+}
+
+function removeLegendLabels(){
+  // console.log("ran")
+  // $("#label1").remove(".legendLabel")
+  // $("#label2").remove(".legendLabel")
+  // $("#label3").remove(".legendLabel")
+  // $("#label4").remove(".legendLabel")
+  // $("#label5").remove(".legendLabel")
+  $(".legendLabel").remove();
 }
 
 
@@ -544,6 +562,8 @@ function getCensusDataAge(map){
 
  ageLayer = L.geoJson(censusTracts, {style: style}).addTo(map).bringToBack();
   });
+
+  updateLegend();
 };
 
 //race data
