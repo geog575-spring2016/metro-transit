@@ -19,7 +19,7 @@ var publicTransporationLayer
 var vehicleLayer
 var householdsLayer
 var kidsLayer
-var X
+var X = 0
 
 var attrArray = ["Population","MedianAge", "Households", "Kids", "CarTruckVan", "PublicTransportation", "DroveAlone", "Carpool", "PublicTransit", "Bikes", "Walked", "OtherCommute", "WorkedFromHome", "WhiteNormalized", "BlackNormalized", "AsianNormalized", "MHI", "Other Race"]; 
 
@@ -73,9 +73,7 @@ function createMap(){
 
   dropdown(map);
 
-  showDropdown();
-
-  removeAllLayers();
+  showDropdown(map);
 
   
 
@@ -111,195 +109,175 @@ function createMap(){
 //   }
 // }
 
-  function showDropdown () {
+  function showDropdown(map) {
 
     $('#blank').click(function() {
-      if (X === 1) 
-      {
-         map.removeLayer(populationLayer);
-      } 
-      else if (X=== 2)
-      {
-       map.removeLayer(ageLayer);
-      }
+      removeAllLayers(map);
     });
 
     $('#population').click(function(){
-      if (X === 1) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+      
+      removeAllLayers(map);
       getCensusDataPopulation(map);
-      }
+      
     });
 
     $('#age').click(function(){
        
-    if (X===2) {
-      map.removeLayer(removeAllLayers);
-    }
-    else {
+      removeAllLayers(map);
       getCensusDataAge(map);
-    }
+    
     }); 
 
     $('#white').click(function(){
-    if (X === 3) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+    
+      removeAllLayers(map);
       getCensusDataWhite(map);
-      }
+      
     });
 
     $('#black').click(function(){
-  if (X === 4) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataBlack(map);
-      }
+      
     });
     $('#asian').click(function(){
-  if (X === 5) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataAsian(map);
-      }
+      
     });
     $('#other').click(function(){
-  if (X === 6) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataOtherRace(map);
-      }
+      
     });
     $('#vehicle').click(function(){
-   if (X === 7) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+   
+      removeAllLayers(map);
       getCensusDataVehicle(map);
-      }
+      
     });
     $('#public').click(function(){
-  if (X === 8) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataPublicTransportation(map);
-      }
+      
     });
     $('#alone').click(function(){
-   if (X === 9) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+   
+      removeAllLayers(map);
       getCensusDataDroveAlone(map);
-      }
+      
     });
     $('#carpool').click(function(){
-   if (X === 10) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+   
+      removeAllLayers(map);
       getCensusDataCarpool(map);
-      }
+      
     });
     $('#publictransit').click(function(){
-  if (X === 11) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataPublicTransit(map);
-      }
+      
     });
     $('#bike').click(function(){
-   if (X === 12) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+   
+      removeAllLayers(map);
       getCensusDataBikes(map);
-      }
+      
     });
     $('#walked').click(function(){
-  if (X === 13) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataWalked(map);
-      }
+      
     });
     $('#alternate').click(function(){
-  if (X === 14) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataOtherCommute(map);
-      }
+      
     });
     $('#home').click(function(){
-  if (X === 15) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataWorkedFromHome(map);
-      }
+      
     });
     $('#household').click(function(){
-  if (X === 16) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataHouseholds(map);
-      }
+      
     });
     $('#kids').click(function(){
-  if (X === 17) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataKids(map);
-      }
+      
     });
     $('#income').click(function(){
-  if (X === 18) {
-         map.removeLayer(removeAllLayers);
-      }
-      else {
+  
+      removeAllLayers(map);
       getCensusDataIncome(map);
-      }
+      
     });
 
 
   };
 
 
-//end of setmap function
 };
 
 
 function removeAllLayers (map) {
-  map.remove(populationLayer)
-  map.remove(ageLayer)
-  map.remove(whiteLayer)
-  map.remove(blackLayer)
-  map.remove(asianLayer)
-  map.remove(otherRaceLayer)
-  map.remove(mhiLayer)
-  map.remove(droveAloneLayer)
-  map.remove(carpoolLayer)
-  map.remove(publicTransitLayer)
-  map.remove(bikesLayer)
-  map.remove(walkedLayer)
-  map.remove(otherCommuteLayer)
-  map.remove(homeLayer)
-  map.remove(publicTransporationLayer)
-  map.remove(vehicleLayer)
-  map.remove(householdsLayer)
-  map.remove(kidsLayer);
+
+  console.log(X);
+  
+  if (X===1){
+    map.removeLayer(populationLayer);
+  } else if (X===2){
+    map.removeLayer(ageLayer);
+  } else if (X===3){
+    map.removeLayer(whiteLayer);
+  } else if (X===4){
+    map.removeLayer(blackLayer)
+  } else if (X===5){
+    map.removeLayer(asianLayer);
+  } else if (X===6){
+    map.removeLayer(otherRaceLayer);
+  } else if (X===7){
+    map.removeLayer(mhiLayer);
+  } else if (X===8){
+    map.removeLayer(droveAloneLayer);
+  } else if (X===9){
+    map.removeLayer(carpoolLayer);
+  } else if (X===10){
+    map.removeLayer(carpoolLayer);
+  } else if (X===11){
+    map.removeLayer(publicTransitLayer);
+  } else if (X===12){
+    map.removeLayer(bikesLayer);
+  } else if (X===13){
+    map.removeLayer(walkedLayer);
+  } else if (X===14){
+    map.removeLayer(otherCommuteLayer);
+  } else if (X===15){
+    map.removeLayer(homeLayer);
+  } else if (X===16){
+    map.removeLayer(publicTransporationLayer);
+  } else if (X===17){
+    map.removeLayer(vehicleLayer);
+  } else if (X===18){
+    map.removeLayer(householdsLayer);
+  } else if (X===19){
+    map.removeLayer(kidsLayer);
+  }
+
 };
 
 
@@ -349,7 +327,7 @@ function getCensusDataPopulation(map){
                       '#FFF';
   }
   function style(feature) {
-     console.log (feature);
+     
     return {
         fillColor: getColor(feature.properties.PopArea),
         weight: .5,
