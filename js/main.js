@@ -21,7 +21,7 @@ var householdsLayer
 var kidsLayer
 var X
 
-var attrArray = ["Population","MedianAge", "Households", "Kids", "CarTruckVan", "PublicTransportation", "DroveAlone", "Carpool", "PublicTransit", "Bikes", "Walked", "OtherCommute", "WorkedFromHome", "WhiteNormalized", "BlackNormalized", "AsianNormalized", "MHI", "Other Race"]; 
+var attrArray = ["Population","MedianAge", "Households", "Kids", "CarTruckVan", "PublicTransportation", "DroveAlone", "Carpool", "PublicTransit", "Bikes", "Walked", "OtherCommute", "WorkedFromHome", "WhiteNormalized", "BlackNormalized", "AsianNormalized", "MHI", "OtherRace"]; 
 
 
 //Create the Leaflet map
@@ -78,8 +78,6 @@ function createMap(){
   removeAllLayers();
 
   
-
-
   var walkable = L.circle([44.938992, -93.178415], 10000, {
     color: 'red',
     fillColor: '#f03',
@@ -91,6 +89,8 @@ function createMap(){
   };
 
   L.control.layers(null, walkOverlay).addTo(map);
+
+
 
 // function showDropdown() {
 //     document.getElementById("myDropdown").classList.toggle("show");
@@ -273,12 +273,12 @@ function createMap(){
       }
     });
 
-
   };
+};
 
 
 //end of setmap function
-};
+
 
 
 function removeAllLayers (map) {
@@ -341,11 +341,11 @@ function getCensusDataPopulation(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 10000 ? '#000000' :
-           d > 6000  ? '#404040' :
-           d > 4000  ? '#808080' :
-           d > 1000   ? '#BFBFBF' :
-           d <= 1000   ? '#FFFFFF' :
+    return d > 15556 ? '#000000' : // high end of break 26,212
+           d > 9507  ? '#404040' :
+           d > 5500  ? '#808080' :
+           d > 2634   ? '#BFBFBF' :
+           d <= 2634   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -369,11 +369,11 @@ function getCensusDataAge(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 40 ? '#000000' :
-           d > 38  ? '#404040' :
-           d > 37  ? '#808080' :
-           d > 34   ? '#BFBFBF' :
-           d <= 34   ? '#FFFFFF' :
+    return d > 44 ? '#000000' :  // high end of break 62
+           d > 39  ? '#404040' :
+           d > 34  ? '#808080' :
+           d > 28   ? '#BFBFBF' :
+           d <= 28   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -398,11 +398,11 @@ function getCensusDataWhite(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 87 ? '#000000' :  // high end of break 99
+           d > 75  ? '#404040' :
+           d > 59  ? '#808080' :
+           d > 36   ? '#BFBFBF' :
+           d <= 36   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -426,11 +426,11 @@ function getCensusDataBlack(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 50 ? '#000000' :
-           d > 40  ? '#404040' :
-           d > 25  ? '#808080' :
-           d > 15   ? '#BFBFBF' :
-           d <= 5   ? '#FFFFFF' :
+    return d > 44 ? '#000000' :  // high end of break 76
+           d > 26  ? '#404040' :
+           d > 13  ? '#808080' :
+           d > 4   ? '#BFBFBF' :
+           d <= 4   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -454,11 +454,11 @@ function getCensusDataAsian(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 26 ? '#000000' :  // high end of break 44
+           d > 16  ? '#404040' :
+           d > 8  ? '#808080' :
+           d > 3   ? '#BFBFBF' :
+           d <= 3   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -482,11 +482,11 @@ function getCensusDataOtherRace(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 18 ? '#000000' : // high end of break 34
+           d > 10  ? '#404040' :
+           d > 6  ? '#808080' :
+           d > 3   ? '#BFBFBF' :
+           d <= 3   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -511,11 +511,11 @@ function getCensusDataIncome(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 109967 ? '#000000' : // high end of break 177,727
+           d > 83906  ? '#404040' :
+           d > 61660  ? '#808080' :
+           d > 39710   ? '#BFBFBF' :
+           d <= 39710   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -540,11 +540,11 @@ function getCensusDataDroveAlone(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 50 ? '#000000' : // high end of break 63
+           d > 44  ? '#404040' :
+           d > 36  ? '#808080' :
+           d > 22   ? '#BFBFBF' :
+           d <= 22   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -567,11 +567,11 @@ function getCensusDataCarpool(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 8 ? '#000000' : // high end of break 14
+           d > 5  ? '#404040' :
+           d > 4  ? '#808080' :
+           d > 2   ? '#BFBFBF' :
+           d <= 2   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -595,11 +595,11 @@ function getCensusDataPublicTransit(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 10 ? '#000000' : // high end of break 17
+           d > 6  ? '#404040' :
+           d > 3  ? '#808080' :
+           d > 1   ? '#BFBFBF' :
+           d <= 1   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -622,11 +622,11 @@ function getCensusDataBikes(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 6 ? '#000000' : // high end of break 10
+           d > 3  ? '#404040' :
+           d > 1.5  ? '#808080' :
+           d > 0.5   ? '#BFBFBF' :
+           d <= 0.5   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -650,11 +650,11 @@ function getCensusDataWalked(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 12 ? '#000000' : // high end of break 29
+           d > 5  ? '#404040' :
+           d > 2  ? '#808080' :
+           d > 0.8   ? '#BFBFBF' :
+           d <= 0.8   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -678,11 +678,11 @@ function getCensusDataOtherCommute(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 1.20 ? '#000000' : // high end of break 2.29
+           d > 0.68  ? '#404040' :
+           d > 0.37  ? '#808080' :
+           d > 0.12   ? '#BFBFBF' :
+           d <= 0.12   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -706,11 +706,11 @@ function getCensusDataWorkedFromHome(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 16 ? '#000000' : // high end of break 33
+           d > 4  ? '#404040' :
+           d > 2  ? '#808080' :
+           d > 1   ? '#BFBFBF' :
+           d <= 1   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -729,13 +729,14 @@ function getCensusDataWorkedFromHome(map){
 };
 
 // mean travel time to work data
+//public transportation breaks not showing up in QGIS, probably because of nulls?
 
 function getCensusDataPublicTransportation(map){
   X=15
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
+    return d > 98 ? '#000000' : 
            d > 95  ? '#404040' :
            d > 90  ? '#808080' :
            d > 85   ? '#BFBFBF' :
@@ -762,11 +763,11 @@ function getCensusDataVehicle(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 32 ? '#000000' : // high end of break 38
+           d > 25  ? '#404040' :
+           d > 22  ? '#808080' :
+           d > 19   ? '#BFBFBF' :
+           d <= 19   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -790,11 +791,11 @@ function getCensusDataHouseholds(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 54 ? '#000000' : // high end of break 76
+           d > 43  ? '#404040' :
+           d > 36  ? '#808080' :
+           d > 16   ? '#BFBFBF' :
+           d <= 16   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -817,11 +818,11 @@ function getCensusDataKids(map){
   $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
 
   function getColor(d) {
-    return d > 98 ? '#000000' :
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
+    return d > 13 ? '#000000' : // high end of break 20
+           d > 11  ? '#404040' :
+           d > 8  ? '#808080' :
+           d > 4   ? '#BFBFBF' :
+           d <= 4   ? '#FFFFFF' :
                       '#FFF';
   }
   function style(feature) {
@@ -1148,9 +1149,6 @@ function getRailData(map){
     .addTo(map);
 
 };
-
-
-
 
 
 
