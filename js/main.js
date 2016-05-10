@@ -257,24 +257,22 @@ function removeAllLayers (map) {
   } else if (X===9){
     map.removeLayer(carpoolLayer);
   } else if (X===10){
-    map.removeLayer(carpoolLayer);
-  } else if (X===11){
     map.removeLayer(publicTransitLayer);
-  } else if (X===12){
+  } else if (X===11){
     map.removeLayer(bikesLayer);
-  } else if (X===13){
+  } else if (X===12){
     map.removeLayer(walkedLayer);
-  } else if (X===14){
+  } else if (X===13){
     map.removeLayer(otherCommuteLayer);
-  } else if (X===15){
+  } else if (X===14){
     map.removeLayer(homeLayer);
-  } else if (X===16){
+  } else if (X===15){
     map.removeLayer(publicTransporationLayer);
-  } else if (X===17){
+  } else if (X===16){
     map.removeLayer(vehicleLayer);
-  } else if (X===18){
+  } else if (X===17){
     map.removeLayer(householdsLayer);
-  } else if (X===19){
+  } else if (X===18){
     map.removeLayer(kidsLayer);
   }
 
