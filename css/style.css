@@ -8,6 +8,19 @@ header {
 	color: #000;
 	font-size: 40pt;
 	text-align: center;
+
+}
+
+h2 {
+	background-color: #61bf1a;
+	opacity: 0.8;
+	width: 75%;
+	color: white;
+	font-family: Georgia;
+}
+
+h3 {
+
 }
 
 #startrib {
@@ -24,6 +37,7 @@ header {
 	font-size: 16pt;
 	text-align: center;
 	padding-bottom: 2%;
+
 }
 
 /*Map*/
@@ -43,6 +57,111 @@ header {
 	float: right;
 }
 
+#contextual {
+	height: 500px;
+
+}
+
+/*style dropdown */
+
+select {
+	background-color: white;
+	border: 1;
+}
+/*style dropdown
+*/#blank {
+	font-weight: bold;
+	font-family: Georgia;
+	color: white;
+}
+
+#population {
+	font-family: Georgia;
+}
+
+#age {
+	font-family: Georgia;
+}
+#demographic {
+	font-family: Georgia;
+	font-weight: bold;
+	color: #61bf1a;
+}
+
+}
+#white {
+	font-family: Georgia;
+}
+#black {
+	font-family: Georgia;
+}
+#asian {
+	font-family: Georgia;
+}
+#other {
+	font-family: Georgia;
+}
+#commute {
+	font-family: Georgia;
+	font-weight: bold;
+	color: #61bf1a;
+}
+
+#vehicle {
+	font-family: Georgia;
+}
+#public {
+	font-family: Georgia;
+}
+#commutetype {
+	font-family: Georgia;
+	font-weight: bold;
+	color: #61bf1a;
+}
+#alone {
+	font-family: Georgia;
+}
+#carpool {
+	font-family: Georgia;
+}
+#publictransit {
+	font-family: Georgia;
+}
+
+#bike {
+	font-family: Georgia;
+}
+
+#walked {
+	font-family: Georgia;
+}
+
+#alternate {
+	font-family: Georgia;
+}
+#home {
+	font-family: Georgia;
+}
+#householdtype {
+	font-family: Georgia;
+	font-weight: bold;
+	color: #61bf1a;
+}
+#household {
+	font-family: Georgia;
+}
+#kids {
+	font-family: Georgia;
+}
+#misc {
+	font-family: Georgia;
+	font-weight: bold;
+	color: #61bf1a;
+}
+#income {
+	font-family: Georgia;
+}
+
 
 #footer {
 	height: 50px;
@@ -55,7 +174,7 @@ header {
 
 
 /*test menuSelector*/
-.dropbtn {
+/*.dropbtn {
     background-color: #4CAF50;
     color: white;
     padding: 16px;
@@ -63,37 +182,48 @@ header {
     border: none;
     cursor: pointer;
 }
-
+*/
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+/*.dropbtn:hover, .dropbtn:focus {
     background-color: #3e8e41;
 }
-
+*/
 /* The container <div> - needed to position the dropdown content */
-.dropdown {
+/*.dropdown {
     position: relative;
     display: inline-block;
-}
+}*/
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+/*.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-
+*/
 /* Links inside the dropdown */
-.dropdown-content a {
+/*.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-
+*/
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
+/*.dropdown-content a:hover {background-color: #f1f1f1}
+*/
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+/*.show {display:block;}
+*/
+a:link{
+	color:;
+	font-family:;
+	font-size:;
+	text-decoration:; 
+}
+
+a:hover{
+	color: black;
+	}
