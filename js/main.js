@@ -57,10 +57,8 @@ function createMap(){
     subdomains: 'abcd',
     minZoom: 10,
     maxZoom: 14,
-    ext: 'png',
-    zIndex: 1000000
-  }).addTo(map).bringToFront;
-
+    ext: 'png'
+  }).addTo(map);
 
   getRailData(map);
 
@@ -137,6 +135,28 @@ function createMap(){
                     omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
                     omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
                     omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
+                    $.ajax(
+                      "data/geojsons/ProposedStations.geojson.json",
+                       {
+                            dataType: "json",
+                            success: function(response){
+                                var geojsonMarkerOptions = {
+                                  radius: 3,
+                                  fillColor: "#000",
+                                  fillOpacity: 1,
+                                  color: "#fff",
+                                  weight: 1.5, 
+                                  opacity: 1,
+                                  zIndex: 6
+                                };
+                    //create a Leaflet GeoJSON layer and add it to the map
+                                L.geoJson(response,{
+                                  pointToLayer: function(feature, latlng) {
+                                    return L.circleMarker(latlng, geojsonMarkerOptions);
+                                  }
+                                }).addTo(map);
+                              }
+                          });
 
   var futurelines = L.easyButton({
     states: [{
@@ -376,9 +396,7 @@ function createMap(){
       
     });
 
-
   };
-
 
 };
 
@@ -970,153 +988,7 @@ function getCensusDataKids(map){
 //get data for stations and make markers
 
 function getRailData(map){
-  var blueStations = $.ajax(
-    "data/geojsons/BlueStations.geojson.json",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 3,
-                fillColor: "#fff",
-                fillOpacity: 1,
-                color: "#0053A0",
-                weight: 1, 
-                opacity: 1,
-                zIndex: 10000000000000
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map);
-            }
-        });
-  var greenStations = $.ajax(
-    "data/geojsons/GreenStations.geojson.json",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 3,
-                fillColor: "#fff",
-                fillOpacity: 1,
-                color: "#028244",
-                weight: 1, 
-                opacity: 1,
-                zIndex: 6
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map);
-            }
-        });
-  var redStations = $.ajax(
-    "data/geojsons/RedStations.geojson.json",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 3,
-                fillColor: "#fff",
-                fillOpacity: 1,
-                color: "#ED1B2E",
-                weight: 1, 
-                opacity: 1,
-                zIndex: 6
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map);
-            }
-        });
-   var sharedStations =$.ajax(
-    "data/geojsons/SharedStations.geojson.json",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 3,
-                fillColor: "#fff",
-                fillOpacity: 1,
-                color: "#000",
-                weight: 1, 
-                opacity: 1,
-                zIndex: 6
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map).bringToFront();
-            }
-        });
-  var northStarStations = $.ajax(
-    "data/geojsons/NorthStarStations.geojson.json",
-     {
-          dataType: "json",
-          success: function(response){
-              var geojsonMarkerOptions = {
-                radius: 4,
-                fillColor: "#FFD204",
-                fillOpacity: 1,
-                color: "#000066",
-                weight: 1, 
-                opacity: 1,
-                zIndex: 6
-              };
-  //create a Leaflet GeoJSON layer and add it to the map
-              L.geoJson(response,{
-                pointToLayer: function(feature, latlng) {
-                  return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-              }).addTo(map);
-            }
-        });
-  // var proposedStations = $.ajax(
-  //   "data/geojsons/ProposedStations.geojson.json",
-  //    {
-  //         dataType: "json",
-  //         success: function(response){
-  //             var geojsonMarkerOptions = {
-  //               radius: 3,
-  //               fillColor: "#000",
-  //               fillOpacity: 1,
-  //               color: "#fff",
-  //               weight: 1, 
-  //               opacity: 1,
-  //               zIndex: 6
-  //             };
-  // //create a Leaflet GeoJSON layer and add it to the map
-  //             L.geoJson(response,{
-  //               pointToLayer: function(feature, latlng) {
-  //                 return L.circleMarker(latlng, geojsonMarkerOptions);
-  //               }
-  //             }).addTo(map);
-  //           }
-  //       });
 
-  // function addTopoData(topoData){  
-  //   topoLayer.addData(topoData);
-  //   topoLayer.addTo(map);
-  // }
-
-  // var metroCensusTracts = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return { 
-  //         color: '#8c8c8c',
-  //         weight: 1,
-  //         fillOpacity: 0
-  //     };
-  //   }
-  // });
   var lakesRivers = L.geoJson (null,{
    style: function(feature) {
         return { 
@@ -1124,7 +996,7 @@ function getRailData(map){
           fillColor: '#e6f2ff',
           fillOpacity: 1,
           weight: 1,
-          zIndex: 3,
+          zIndex: 2,
           opacity: 1
       };
     }
@@ -1149,17 +1021,6 @@ function getRailData(map){
         };
     }
   });
-  // var goldLine = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return { 
-  //           color: '#FBBD12', 
-  //           weight: 3,
-  //           dashArray: '5',
-  //           opacity: 1,
-  //           zIndex: 3
-  //       };
-  //   }
-  // });
   var greenLine = L.geoJson (null,{
    style: function(feature) {
         return { 
@@ -1167,37 +1028,6 @@ function getRailData(map){
           weight: 3,
           opacity: 1,
           zIndex: 3
-        };
-    }
-  });
-  // var orangeLine = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return {
-  //        color: ' #F68B1F',
-  //        weight: 3,
-  //        dashArray: '5',
-  //        opacity: 1,
-  //        zIndex: 3 
-  //    };
-  //   }
-  // });
-  var northStarLine = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-          color: '#0053A0',
-          weight: 1,
-          opacity: 1,
-          zIndex: 5
-        };
-    }
-  });
-  var northStarLine2 = L.geoJson (null,{
-   style: function(feature) {
-        return { 
-          color: '#FFD204',
-          weight: 3,
-          opacity: 1,
-          zIndex: 4
         };
     }
   });
@@ -1211,94 +1041,143 @@ function getRailData(map){
         };
     }
   });
-  // var blueLineExt = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return { 
-  //           color: '#0053A0',
-  //           weight: 3,
-  //           dashArray: '5',
-  //           opacity: 1,
-  //           zIndex: 3
-  //     };
-  //   }
-  // });
-  // var redLineExt = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return { 
-  //           color: '#ED1B2E',
-  //           weight: 3,
-  //           dashArray: '5',
-  //           opacity: 1,
-  //           zIndex: 3
-  //    };
-  //   }
-  // });
-  // var greenLineExt = L.geoJson (null,{
-  //  style: function(feature) {
-  //       return { 
-  //           color: ' #028244',
-  //           weight: 3,
-  //           opacity: 1,
-  //           dashArray: '5',
-  //           zIndex: 3
-  //    };
-  //   }
-  // });
+  var northStarLine2 = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+          color: '#FFD204',
+          weight: 3,
+          opacity: 1,
+          zIndex: 4
+        };
+    }
+  });
+  var northStarLine = L.geoJson (null,{
+   style: function(feature) {
+        return { 
+          color: '#000066',
+          weight: 1,
+          opacity: 1,
+          zIndex: 5
+        };
+    }
+  });
 
   var railLines =
-  omnivore.topojson('data/topojsons/LakesAndRivers.topojson', null, lakesRivers)
-    .addTo(map); 
-  // omnivore.topojson('data/topojsons/MetroCensusTracts.topojson', null, metroCensusTracts)
-  //   .addTo(map);
-  omnivore.topojson('data/topojsons/BlueLine.topojson', null, blueLine)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/RedLine.topojson', null, redLine)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/GreenLine.topojson', null, greenLine)
-    .addTo(map);
-  // omnivore.topojson('data/topojsons/GoldLine.topojson', null, goldLine)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
-  //   .addTo(map);
-  // omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
-  //   .addTo(map);
-  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine2)
-    .addTo(map);
-  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3)
-    .addTo(map);
+  omnivore.topojson('data/topojsons/LakesAndRivers.topojson', null, lakesRivers).addTo(map);
+  omnivore.topojson('data/topojsons/BlueLine.topojson', null, blueLine).addTo(map).bringToBack();
+  omnivore.topojson('data/topojsons/RedLine.topojson', null, redLine).addTo(map);
+  omnivore.topojson('data/topojsons/GreenLine.topojson', null, greenLine).addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine3).addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine2).addTo(map);
+  omnivore.topojson('data/topojsons/NorthStarLine.topojson', null, northStarLine).addTo(map);
+
+
+  var blueStations = $.ajax(
+    "data/geojsons/BlueStations.geojson.json",
+     {
+          dataType: "json",
+          success: function(response){
+              var geojsonMarkerOptions = {
+                radius: 3,
+                fillColor: "#fff",
+                fillOpacity: 1,
+                color: "#0053A0",
+                weight: 1.5, 
+                opacity: 1
+              };
+  //create a Leaflet GeoJSON layer and add it to the map
+              L.geoJson(response,{
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(map);
+            }
+        });
+  var greenStations = $.ajax(
+    "data/geojsons/GreenStations.geojson.json",
+     {
+          dataType: "json",
+          success: function(response){
+              var geojsonMarkerOptions = {
+                radius: 3,
+                fillColor: "#fff",
+                fillOpacity: 1,
+                color: "#028244",
+                weight: 1.5, 
+                opacity: 1
+              };
+  //create a Leaflet GeoJSON layer and add it to the map
+              L.geoJson(response,{
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(map);
+            }
+        });
+  var redStations = $.ajax(
+    "data/geojsons/RedStations.geojson.json",
+     {
+          dataType: "json",
+          success: function(response){
+              var geojsonMarkerOptions = {
+                radius: 3,
+                fillColor: "#fff",
+                fillOpacity: 1,
+                color: "#ED1B2E",
+                weight: 1.5, 
+                opacity: 1
+              };
+  //create a Leaflet GeoJSON layer and add it to the map
+              L.geoJson(response,{
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(map);
+            }
+        });
+   var sharedStations =$.ajax(
+    "data/geojsons/SharedStations.geojson.json",
+     {
+          dataType: "json",
+          success: function(response){
+              var geojsonMarkerOptions = {
+                radius: 3,
+                fillColor: "#fff",
+                fillOpacity: 1,
+                color: "#000",
+                weight: 1.5, 
+                opacity: 1
+              };
+  //create a Leaflet GeoJSON layer and add it to the map
+              L.geoJson(response,{
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(map);
+            }
+        });
+  var northStarStations = $.ajax(
+    "data/geojsons/NorthStarStations.geojson.json",
+     {
+          dataType: "json",
+          success: function(response){
+              var geojsonMarkerOptions = {
+                radius: 4,
+                fillColor: "#FFD204",
+                fillOpacity: 1,
+                color: "#000066",
+                weight: 1.5, 
+                opacity: 1
+              };
+  //create a Leaflet GeoJSON layer and add it to the map
+              L.geoJson(response,{
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(map);
+            }
+        });
 
 };
-
-
-
-
-
-
-// function createDropdown(){
-//     //add select element
-//     var dropdown = d3.select("body")
-//         .append("select")
-//         .attr("class", "dropdown");
-
-//     //add initial option
-//     var titleOption = dropdown.append("option")
-//         .attr("class", "titleOption")
-//         .attr("disabled", "true")
-//         .text("Select Attribute");
-
-//     //add attribute name options
-//     var attrOptions = dropdown.selectAll("attrOptions")
-//         .data(attrArray)
-//         .enter()
-//         .append("option")
-//         .attr("value", function(d){ return d })
-//         .text(function(d){ return d });
-// };
 
 $(document).ready(createMap);
