@@ -6,7 +6,6 @@ var ageLayer
 var whiteLayer
 var blackLayer
 var asianLayer
-var otherRaceLayer
 var mhiLayer
 var droveAloneLayer
 var carpoolLayer
@@ -130,32 +129,10 @@ function createMap(){
   });
 
   var futurelinefiles = omnivore.topojson('data/topojsons/GoldLine.topojson', null, goldLine)
-                    omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
-                    omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
-                    omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
-                    omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
-                    $.ajax(
-                      "data/geojsons/ProposedStations.geojson.json",
-                       {
-                            dataType: "json",
-                            success: function(response){
-                                var geojsonMarkerOptions = {
-                                  radius: 3,
-                                  fillColor: "#000",
-                                  fillOpacity: 1,
-                                  color: "#fff",
-                                  weight: 1.5, 
-                                  opacity: 1,
-                                  zIndex: 6
-                                };
-                    //create a Leaflet GeoJSON layer and add it to the map
-                                L.geoJson(response,{
-                                  pointToLayer: function(feature, latlng) {
-                                    return L.circleMarker(latlng, geojsonMarkerOptions);
-                                  }
-                                }).addTo(map);
-                              }
-                          });
+                        omnivore.topojson('data/topojsons/OrangeLine.topojson', null, orangeLine)
+                        omnivore.topojson('data/topojsons/BlueLineExt.topojson', null, blueLineExt)
+                        omnivore.topojson('data/topojsons/GreenLineExt.topojson', null, greenLineExt)
+                        omnivore.topojson('data/topojsons/RedLineExt.topojson', null, redLineExt)
 
   var futurelines = L.easyButton({
     states: [{
@@ -378,24 +355,6 @@ function createMap(){
   });
   futurewalkablebutton.addTo(map);
 
-// function showDropdown() {
-//     document.getElementById("myDropdown").classList.toggle("show");
-// }
-
-//Close the dropdown menu if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.dropbtn')) {
-
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-// }
 
   function showDropdown(map) {
 
@@ -434,12 +393,6 @@ function createMap(){
   
       removeAllLayers(map);
       getCensusDataAsian(map);
-      
-    });
-    $('#other').click(function(){
-  
-      removeAllLayers(map);
-      getCensusDataOtherRace(map);
       
     });
 
@@ -523,8 +476,6 @@ function removeAllLayers (map) {
     map.removeLayer(blackLayer)
   } else if (X===5){
     map.removeLayer(asianLayer);
-  } else if (X===6){
-    map.removeLayer(otherRaceLayer);
   } else if (X===7){
     map.removeLayer(mhiLayer);
   } else if (X===8){
@@ -554,26 +505,13 @@ function removeAllLayers (map) {
 
  function dropdown (map) {
 
-//  var legend = L.control({position: 'topright'});
-// legend.onAdd = function (map) {
-//   var div = L.DomUtil.create('div', 'info legend');
-// div.innerHTML = 
-// '<select id="income"><option>Income</option></select>
-//  <select id="age"><option>Median Age</option></select>';
-// div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
-// return div;
 
-// var div = L.DomUtil.create('div', 'info legend');
-// div.innerHTML='<select id="income"><option>Income</option></select>
-//                 <select id="age"><option>Age</option></select>';
-// div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
-// return div;
  var legend = L.control({position: 'topright'});
 legend.onAdd = function (map) {
 var div = L.DomUtil.create('div', 'info legend');
 div.innerHTML = 
 
-'<select><option id="blank">-Select a Variable-</option><option id="demographic">Demographic</option><option id ="white">White</option><option id ="black">Black</option><option id ="asian">Asian</option><option id ="other">Other Race or Two or More Races</option><option id="commutetype">Commute Type</option><option id ="alone">Drove Alone</option><option id ="carpool">Carpool</option><option id ="publictransit">Public Transit</option><option id ="bike">Bike</option><option id ="walked">Walked</option><option id ="alternate">Other Commute Type</option><option id ="home">Work From Home</option><option id="householdtype">Household Type</option><option id ="household">Households</option><option id ="kids">Kids</option><option id="misc">Other</option><option id="population">Population per Square Mile</option><option id="age">Median Age</option><option id ="income">Median Household Income</option></select>'
+'<select><option id="blank">-Select a Variable-</option><option id="demographic" disabled>Demographic</option><option id ="white">White</option><option id ="black">Black</option><option id ="asian">Asian</option><option id="commutetype" disabled>Commute Type</option><option id ="alone">Drive Alone</option><option id ="carpool">Carpool</option><option id ="publictransit">Public Transit</option><option id ="bike">Bike</option><option id ="walked">Walk</option><option id ="alternate">Other Commute Type</option><option id ="home">Work From Home</option><option id="householdtype" disabled>Household Type</option><option id ="household">Households</option><option id ="kids">Kids</option><option id="misc" disabled>Miscellaneous</option><option id="population">Population Density</option><option id="age">Median Age</option><option id ="income">Median Household Income</option></select>'
 
 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 return div;
@@ -587,7 +525,7 @@ function updateLegend(){
 
   if (X===1){
     $(".legendLabel").remove();
-    $("#break0").append($("<p class='legendLabel'>Population Density</p>" + "<p class='legendLabel'>(people/sq mi)</p>"))
+    $("#break0").append($("<p class='legendLabel'>Population Density</p>" + "<p class='legendLabel'>(People/sq mi)</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>2,630</p>"))
     $("#label2").append($("<p class='legendLabel'>2,630-</p>" + "<p class='legendLabel'>5,500</p>"))
     $("#label3").append($("<p class='legendLabel'>5,500-</p>" + "<p class='legendLabel'>9,500</p>"))
@@ -595,7 +533,7 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>15,550-</p>" + "<p class='legendLabel'>26,212</p>"))
   } else if (X===2){
     $(".legendLabel").remove();
-    $("#break0").append($("<p class='legendLabel'>Median Age</p>" + "<p class='legendLabel'>(years old)</p>"))
+    $("#break0").append($("<p class='legendLabel'>Median Age</p>" + "<p class='legendLabel'>(years)</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>28</p>"))
     $("#label2").append($("<p class='legendLabel'>28-</p>" + "<p class='legendLabel'>34</p>"))
     $("#label3").append($("<p class='legendLabel'>34-</p>" + "<p class='legendLabel'>39</p>"))
@@ -603,7 +541,7 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>62</p>"))
   } else if (X===3){
     $(".legendLabel").remove();
-    $("#break0").append($("<p class='legendLabel'>Percentage White</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent White</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>36%</p>"))
     $("#label2").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>59%</p>"))
     $("#label3").append($("<p class='legendLabel'>59-</p>" + "<p class='legendLabel'>75%</p>"))
@@ -611,7 +549,7 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>87-</p>" + "<p class='legendLabel'>99%</p>"))
   } else if (X===4){
     $(".legendLabel").remove();
-    $("#break0").append($("<p class='legendLabel'>Percentage Black</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Black</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>4%</p>"))
     $("#label2").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>13%</p>"))
     $("#label3").append($("<p class='legendLabel'>13-</p>" + "<p class='legendLabel'>26%</p>"))
@@ -619,20 +557,12 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>76%</p>"))
   } else if (X===5){
     $(".legendLabel").remove();
-    $("#break0").append($("<p class='legendLabel'>Percentage Asian</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Asian</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>3%</p>"))
     $("#label2").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>8%</p>"))
     $("#label3").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>16%</p>"))
     $("#label4").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>26%</p>"))
     $("#label5").append($("<p class='legendLabel'>26-</p>" + "<p class='legendLabel'>44%</p>"))
-  } else if (X===6){
-    $(".legendLabel").remove();
-    $("#break0").append($("<p class='legendLabel'>Percentage Other Race</p>"))
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>3%</p>"))
-    $("#label2").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6%</p>"))
-    $("#label3").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10%</p>"))
-    $("#label4").append($("<p class='legendLabel'>10-</p>" + "<p class='legendLabel'>18%</p>"))
-    $("#label5").append($("<p class='legendLabel'>18-</p>" + "<p class='legendLabel'>34%</p>"))
   } else if (X===7){
     $(".legendLabel").remove();
     $("#break0").append($("<p class='legendLabel'>Median Household Income</p>"))
@@ -745,7 +675,6 @@ function getCensusDataPopulation(map){
 
 populationLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -777,7 +706,6 @@ function getCensusDataAge(map){
 
  ageLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -811,7 +739,6 @@ function getCensusDataWhite(map){
 
  whiteLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -844,7 +771,6 @@ function getCensusDataBlack(map){
 
  blackLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -877,44 +803,12 @@ function getCensusDataAsian(map){
 
  asianLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
   updateLegend();
 };
 
-function getCensusDataOtherRace(map){
-  X=6
-  $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
-
-  function getColor(d) {
-    return d > 18 ? '#000000' : // high end of break 34
-           d > 10  ? '#404040' :
-           d > 6  ? '#808080' :
-           d > 3   ? '#BFBFBF' :
-           d <= 3   ? '#FFFFFF' :
-                      '#fcf8e8';
-  }
-  function style(feature) {
-    return {
-        fillColor: getColor(feature.properties.Other),
-        weight: .5,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.6,
-        zIndex: 2
-    };
-  }
-
- otherRaceLayer = L.geoJson(censusTracts, {
-  style: style,
-  onEachFeature: onEachFeature
-}).addTo(map).bringToBack();
-  });
-
-  updateLegend();
-};
 
 //median household income data
 
@@ -943,7 +837,6 @@ function getCensusDataIncome(map){
 
  mhiLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature,
 }).addTo(map).bringToBack();
   });
 
@@ -977,7 +870,6 @@ function getCensusDataDroveAlone(map){
 
  droveAloneLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -1009,7 +901,6 @@ function getCensusDataCarpool(map){
 
  carpoolLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -1042,7 +933,6 @@ function getCensusDataPublicTransit(map){
 
  publicTransitLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -1074,7 +964,6 @@ function getCensusDataBikes(map){
 
  bikesLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature,
 }).addTo(map).bringToBack();
   });
 
@@ -1107,7 +996,6 @@ function getCensusDataWalked(map){
 
  walkedLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -1140,7 +1028,6 @@ function getCensusDataOtherCommute(map){
 
  otherCommuteLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -1173,7 +1060,6 @@ function getCensusDataWorkedFromHome(map){
 
  homeLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature,
 }).addTo(map).bringToBack();
   });
 
@@ -1208,7 +1094,6 @@ function getCensusDataHouseholds(map){
 
  householdsLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
 
@@ -1241,7 +1126,6 @@ function getCensusDataKids(map){
 
  kidsLayer = L.geoJson(censusTracts, {
   style: style,
-  onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
 
  createPopups(map, censusTracts);
@@ -1255,70 +1139,68 @@ function getCensusDataKids(map){
 
 //highlight functions
 
-function highlightFeature (e) {
-  var layer = e.target;
+// function highlightFeature (e) {
+//   var layer = e.target;
 
-  layer.setStyle({
-    weight: 3,
-    color: '#61bf1a'
-  });
-}
+//   layer.setStyle({
+//     weight: 3,
+//     color: '#61bf1a'
+//   });
+// }
 
-function resetHighlight (e) {
-   if (X===1){
-  populationLayer.resetStyle(e.target);
-} else if (X===2){
-  ageLayer.resetStyle(e.target);
-} else if (X===3){
-  whiteLayer.resetStyle(e.target);
-} else if (X===4){
-    blackLayer.resetStyle(e.target);
-} else if (X===5){
-    asianLayer.resetStyle(e.target);
-} else if (X===6){
-  otherRaceLayer.resetStyle(e.target);
-} else if (X===7){
-   mhiLayer.resetStyle(e.target);
-} else if (X===8){
-   droveAloneLayer.resetStyle(e.target);
-} else if (X===9){
-   carpoolLayer.resetStyle(e.target);
-} else if (X===10){
-   publicTransitLayer.resetStyle(e.target);
-} else if (X===11){
-   bikesLayer.resetStyle(e.target);
-} else if (X===12){
-   walkedLayer.resetStyle(e.target);
-} else if (X===13){
-   otherCommuteLayer.resetStyle(e.target);
-} else if (X===14){
-   homeLayer.resetStyle(e.target);
-} else if (X===15){
-   publicTransportationLayer.resetStyle(e.target);
-} else if (X===16){
-   vehicleLayer.resetStyle(e.target);
-} else if (X===17){
-   householdsLayer.resetStyle(e.target);
-} else if (X===18){
-   kidsLayer.resetStyle(e.target);
-}
+// function resetHighlight (e) {
+//    if (X===1){
+//   populationLayer.resetStyle(e.target);
+// } else if (X===2){
+//   ageLayer.resetStyle(e.target);
+// } else if (X===3){
+//   whiteLayer.resetStyle(e.target);
+// } else if (X===4){
+//     blackLayer.resetStyle(e.target);
+// } else if (X===5){
+//     asianLayer.resetStyle(e.target);
+// } else if (X===7){
+//    mhiLayer.resetStyle(e.target);
+// } else if (X===8){
+//    droveAloneLayer.resetStyle(e.target);
+// } else if (X===9){
+//    carpoolLayer.resetStyle(e.target);
+// } else if (X===10){
+//    publicTransitLayer.resetStyle(e.target);
+// } else if (X===11){
+//    bikesLayer.resetStyle(e.target);
+// } else if (X===12){
+//    walkedLayer.resetStyle(e.target);
+// } else if (X===13){
+//    otherCommuteLayer.resetStyle(e.target);
+// } else if (X===14){
+//    homeLayer.resetStyle(e.target);
+// } else if (X===15){
+//    publicTransportationLayer.resetStyle(e.target);
+// } else if (X===16){
+//    vehicleLayer.resetStyle(e.target);
+// } else if (X===17){
+//    householdsLayer.resetStyle(e.target);
+// } else if (X===18){
+//    kidsLayer.resetStyle(e.target);
+// }
 
 
-};
+// };
 
-function onEachFeature (feature, layer) {
-  layer.on({
-    mouseover: highlightFeature,
-    mouseout: resetHighlight
-  });
-}
+// function onEachFeature (feature, layer) {
+//   layer.on({
+//     mouseover: highlightFeature,
+//     mouseout: resetHighlight
+//   });
+// }
 
 
-function createPopups(map, feature){
+// function createPopups(map, feature){
   
-    console.log(feature)
+//     console.log(feature)
   
-}
+// }
 
 //
 
