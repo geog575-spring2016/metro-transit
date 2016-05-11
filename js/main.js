@@ -15,7 +15,7 @@ var bikesLayer
 var walkedLayer
 var otherCommuteLayer
 var homeLayer
-var publicTransporationLayer
+var publicTransportationLayer
 var vehicleLayer
 var householdsLayer
 var kidsLayer
@@ -555,7 +555,7 @@ function removeAllLayers (map) {
   } else if (X===14){
     map.removeLayer(homeLayer);
   } else if (X===15){
-    map.removeLayer(publicTransporationLayer);
+    map.removeLayer(publicTransportationLayer);
   } else if (X===16){
     map.removeLayer(vehicleLayer);
   } else if (X===17){
@@ -1062,7 +1062,7 @@ function getCensusDataPublicTransportation(map){
     };
   }
 
- publicTransporationLayer = L.geoJson(censusTracts, {
+ publicTransportationLayer = L.geoJson(censusTracts, {
   style: style,
   onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
