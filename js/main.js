@@ -1256,10 +1256,8 @@ function highlightFeature (e) {
   var layer = e.target;
 
   layer.setStyle({
-    weight: 4,
-    color: '#61bf1a',
-    dashArray: '',
-    fillOpacity: 0.7,
+    weight: 3,
+    color: '#61bf1a'
   });
 }
 

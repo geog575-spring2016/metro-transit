@@ -3,12 +3,11 @@
 header {
 	width: 100%;
 	height: 70px;
-	margin: 10px auto;
 	font-family: Georgia;
 	color: #000;
 	font-size: 40pt;
 	text-align: center;
-
+	padding-bottom: 1%;
 }
 
 #startrib {
@@ -19,7 +18,6 @@ header {
 #subheader {
 	width: 100%;
 	height: 20px;
-	margin: 15px;
 	font-family: Georgia;
 	color: #404040;
 	font-size: 20pt;
@@ -29,7 +27,7 @@ header {
 
 #context {
 	font-family: Georgia;
-	width: 75%;
+	width: 77%;
 	padding-bottom: 1%;
 	margin: auto;
 	line-height: 150%;
@@ -44,7 +42,7 @@ header {
 }
 
 #legend {
-	height: 350px;
+	height: 340px;
 	width: 15%;
 	display: inline-block;
 	border-radius: 10px;
@@ -63,7 +61,7 @@ header {
  
  #bottombar {
  	height: 30px;
- 	background-color: #ccffcc;
+ 	background-color: #e3f9d2;
  	border-radius: 10px;
  	font-family: Calibri;
  	text-align: center;
