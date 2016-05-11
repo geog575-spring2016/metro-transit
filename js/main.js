@@ -873,8 +873,6 @@ function getCensusDataAsian(map){
         fillOpacity: 0.6,
         zIndex: 2
     };
-
-    updateLegend();
   }
 
  asianLayer = L.geoJson(censusTracts, {
@@ -882,8 +880,9 @@ function getCensusDataAsian(map){
   onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
   });
-};
 
+  updateLegend();
+};
 
 function getCensusDataOtherRace(map){
   X=6
@@ -1237,15 +1236,19 @@ function getCensusDataKids(map){
         fillOpacity: 0.6,
         zIndex: 2
     };
+
   }
 
  kidsLayer = L.geoJson(censusTracts, {
   style: style,
   onEachFeature: onEachFeature
 }).addTo(map).bringToBack();
+
+ createPopups(map, censusTracts);
   });
 
   updateLegend();
+  
 };
 
 //end of censustracts3 geojson data
@@ -1310,6 +1313,13 @@ function onEachFeature (feature, layer) {
     mouseover: highlightFeature,
     mouseout: resetHighlight
   });
+}
+
+
+function createPopups(map, feature){
+  
+    console.log(feature)
+  
 }
 
 //
