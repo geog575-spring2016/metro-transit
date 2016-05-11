@@ -240,8 +240,8 @@ a:hover{
 /*legend*/
 
 #legend {
-    height: 280px;
-    width: 150px;
+    height: 335px;
+    width: 170px;
     border: solid #000 5px;
     border-radius: 3px;
 }
@@ -282,6 +282,11 @@ a:hover{
     text-align: center;
     line-height: 20px;
 
+}
+
+#break0 {
+	padding: 3px;
+	text-align: center;
 }
 
 #sq1 {

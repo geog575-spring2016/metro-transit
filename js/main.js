@@ -587,6 +587,7 @@ function updateLegend(){
 
   if (X===1){
     $(".legendLabel").remove();
+    $("#break0").append($("<p class='legendLabel'>Population Density</p>" + "<p class='legendLabel'>(people/sq mi)</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>2,630</p>"))
     $("#label2").append($("<p class='legendLabel'>2,630-</p>" + "<p class='legendLabel'>5,500</p>"))
     $("#label3").append($("<p class='legendLabel'>5,500-</p>" + "<p class='legendLabel'>9,500</p>"))
@@ -594,6 +595,7 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>15,550-</p>" + "<p class='legendLabel'>26,212</p>"))
   } else if (X===2){
     $(".legendLabel").remove();
+    $("#break0").append($("<p class='legendLabel'>Median Age</p>" + "<p class='legendLabel'>(years old)</p>"))
     $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>28</p>"))
     $("#label2").append($("<p class='legendLabel'>28-</p>" + "<p class='legendLabel'>34</p>"))
     $("#label3").append($("<p class='legendLabel'>34-</p>" + "<p class='legendLabel'>39</p>"))
@@ -601,34 +603,39 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>62</p>"))
   } else if (X===3){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>36</p>"))
-    $("#label2").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>59</p>"))
-    $("#label3").append($("<p class='legendLabel'>59-</p>" + "<p class='legendLabel'>75</p>"))
-    $("#label4").append($("<p class='legendLabel'>75-</p>" + "<p class='legendLabel'>87</p>"))
-    $("#label5").append($("<p class='legendLabel'>87-</p>" + "<p class='legendLabel'>99</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percentage White</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>36%</p>"))
+    $("#label2").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>59%</p>"))
+    $("#label3").append($("<p class='legendLabel'>59-</p>" + "<p class='legendLabel'>75%</p>"))
+    $("#label4").append($("<p class='legendLabel'>75-</p>" + "<p class='legendLabel'>87%</p>"))
+    $("#label5").append($("<p class='legendLabel'>87-</p>" + "<p class='legendLabel'>99%</p>"))
   } else if (X===4){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>4</p>"))
-    $("#label2").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>13</p>"))
-    $("#label3").append($("<p class='legendLabel'>13-</p>" + "<p class='legendLabel'>26</p>"))
-    $("#label4").append($("<p class='legendLabel'>26-</p>" + "<p class='legendLabel'>44</p>"))
-    $("#label5").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>76</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percentage Black</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>4%</p>"))
+    $("#label2").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>13%</p>"))
+    $("#label3").append($("<p class='legendLabel'>13-</p>" + "<p class='legendLabel'>26%</p>"))
+    $("#label4").append($("<p class='legendLabel'>26-</p>" + "<p class='legendLabel'>44%</p>"))
+    $("#label5").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>76%</p>"))
   } else if (X===5){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>3</p>"))
-    $("#label2").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>8</p>"))
-    $("#label3").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>16</p>"))
-    $("#label4").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>26</p>"))
-    $("#label5").append($("<p class='legendLabel'>26-</p>" + "<p class='legendLabel'>44</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percentage Asian</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>3%</p>"))
+    $("#label2").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>8%</p>"))
+    $("#label3").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>16%</p>"))
+    $("#label4").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>26%</p>"))
+    $("#label5").append($("<p class='legendLabel'>26-</p>" + "<p class='legendLabel'>44%</p>"))
   } else if (X===6){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>3</p>"))
-    $("#label2").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6</p>"))
-    $("#label3").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10</p>"))
-    $("#label4").append($("<p class='legendLabel'>10-</p>" + "<p class='legendLabel'>18</p>"))
-    $("#label5").append($("<p class='legendLabel'>18-</p>" + "<p class='legendLabel'>34</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percentage Other Race</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>3%</p>"))
+    $("#label2").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6%</p>"))
+    $("#label3").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10%</p>"))
+    $("#label4").append($("<p class='legendLabel'>10-</p>" + "<p class='legendLabel'>18%</p>"))
+    $("#label5").append($("<p class='legendLabel'>18-</p>" + "<p class='legendLabel'>34%</p>"))
   } else if (X===7){
     $(".legendLabel").remove();
+    $("#break0").append($("<p class='legendLabel'>Median Household Income</p>"))
     $("#label1").append($("<p class='legendLabel'>$0-</p>" + "<p class='legendLabel'>39,700</p>"))
     $("#label2").append($("<p class='legendLabel'>$39,700-</p>" + "<p class='legendLabel'>61,660</p>"))
     $("#label3").append($("<p class='legendLabel'>$61,660-</p>" + "<p class='legendLabel'>83,900</p>"))
@@ -636,67 +643,76 @@ function updateLegend(){
     $("#label5").append($("<p class='legendLabel'>$110,000,-</p>" + "<p class='legendLabel'>177,727</p>"))
   } else if (X===8){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>22</p>"))
-    $("#label2").append($("<p class='legendLabel'>22-</p>" + "<p class='legendLabel'>36</p>"))
-    $("#label3").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>44</p>"))
-    $("#label4").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>50</p>"))
-    $("#label5").append($("<p class='legendLabel'>50-</p>" + "<p class='legendLabel'>63</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Driving Alone</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>22%</p>"))
+    $("#label2").append($("<p class='legendLabel'>22-</p>" + "<p class='legendLabel'>36%</p>"))
+    $("#label3").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>44%</p>"))
+    $("#label4").append($("<p class='legendLabel'>44-</p>" + "<p class='legendLabel'>50%</p>"))
+    $("#label5").append($("<p class='legendLabel'>50-</p>" + "<p class='legendLabel'>63%</p>"))
   } else if (X===9){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>2</p>"))
-    $("#label2").append($("<p class='legendLabel'>2-</p>" + "<p class='legendLabel'>4</p>"))
-    $("#label3").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>5</p>"))
-    $("#label4").append($("<p class='legendLabel'>5-</p>" + "<p class='legendLabel'>8</p>"))
-    $("#label5").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>14</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Carpooling</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>2%</p>"))
+    $("#label2").append($("<p class='legendLabel'>2-</p>" + "<p class='legendLabel'>4%</p>"))
+    $("#label3").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>5%</p>"))
+    $("#label4").append($("<p class='legendLabel'>5-</p>" + "<p class='legendLabel'>8%</p>"))
+    $("#label5").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>14%</p>"))
   } else if (X===10){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>1</p>"))
-    $("#label2").append($("<p class='legendLabel'>1-</p>" + "<p class='legendLabel'>3</p>"))
-    $("#label3").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6</p>"))
-    $("#label4").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10</p>"))
-    $("#label5").append($("<p class='legendLabel'>10-</p>" + "<p class='legendLabel'>17</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Using Public Transit</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>1%</p>"))
+    $("#label2").append($("<p class='legendLabel'>1-</p>" + "<p class='legendLabel'>3%</p>"))
+    $("#label3").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6%</p>"))
+    $("#label4").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10%</p>"))
+    $("#label5").append($("<p class='legendLabel'>10-</p>" + "<p class='legendLabel'>17%</p>"))
   } else if (X===11){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>0.5</p>"))
-    $("#label2").append($("<p class='legendLabel'>0.5-</p>" + "<p class='legendLabel'>1.5</p>"))
-    $("#label3").append($("<p class='legendLabel'>1.5-</p>" + "<p class='legendLabel'>3</p>"))
-    $("#label4").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6</p>"))
-    $("#label5").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Biking</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>0.5%</p>"))
+    $("#label2").append($("<p class='legendLabel'>0.5-</p>" + "<p class='legendLabel'>1.5%</p>"))
+    $("#label3").append($("<p class='legendLabel'>1.5-</p>" + "<p class='legendLabel'>3%</p>"))
+    $("#label4").append($("<p class='legendLabel'>3-</p>" + "<p class='legendLabel'>6%</p>"))
+    $("#label5").append($("<p class='legendLabel'>6-</p>" + "<p class='legendLabel'>10%</p>"))
   } else if (X===12){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>0.8</p>"))
-    $("#label2").append($("<p class='legendLabel'>0.8-</p>" + "<p class='legendLabel'>2</p>"))
-    $("#label3").append($("<p class='legendLabel'>2-</p>" + "<p class='legendLabel'>5</p>"))
-    $("#label4").append($("<p class='legendLabel'>5-</p>" + "<p class='legendLabel'>12</p>"))
-    $("#label5").append($("<p class='legendLabel'>12-</p>" + "<p class='legendLabel'>29</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Walking</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>0.8%</p>"))
+    $("#label2").append($("<p class='legendLabel'>0.8-</p>" + "<p class='legendLabel'>2%</p>"))
+    $("#label3").append($("<p class='legendLabel'>2-</p>" + "<p class='legendLabel'>5%</p>"))
+    $("#label4").append($("<p class='legendLabel'>5-</p>" + "<p class='legendLabel'>12%</p>"))
+    $("#label5").append($("<p class='legendLabel'>12-</p>" + "<p class='legendLabel'>29%</p>"))
   } else if (X===13){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>0.15</p>"))
-    $("#label2").append($("<p class='legendLabel'>0.15-</p>" + "<p class='legendLabel'>0.4</p>"))
-    $("#label3").append($("<p class='legendLabel'>0.4-</p>" + "<p class='legendLabel'>0.7</p>"))
-    $("#label4").append($("<p class='legendLabel'>0.7-</p>" + "<p class='legendLabel'>1.2</p>"))
-    $("#label5").append($("<p class='legendLabel'>1.2-</p>" + "<p class='legendLabel'>2.29</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Using Other Transportation</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>0.15%</p>"))
+    $("#label2").append($("<p class='legendLabel'>0.15-</p>" + "<p class='legendLabel'>0.4%</p>"))
+    $("#label3").append($("<p class='legendLabel'>0.4-</p>" + "<p class='legendLabel'>0.7%</p>"))
+    $("#label4").append($("<p class='legendLabel'>0.7-</p>" + "<p class='legendLabel'>1.2%</p>"))
+    $("#label5").append($("<p class='legendLabel'>1.2-</p>" + "<p class='legendLabel'>2.29%</p>"))
   } else if (X===14){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>1</p>"))
-    $("#label2").append($("<p class='legendLabel'>1-</p>" + "<p class='legendLabel'>2</p>"))
-    $("#label3").append($("<p class='legendLabel'>2-</p>" + "<p class='legendLabel'>4</p>"))
-    $("#label4").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>16</p>"))
-    $("#label5").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>33</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Working at Home</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>1%</p>"))
+    $("#label2").append($("<p class='legendLabel'>1-</p>" + "<p class='legendLabel'>2%</p>"))
+    $("#label3").append($("<p class='legendLabel'>2-</p>" + "<p class='legendLabel'>4%</p>"))
+    $("#label4").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>16%</p>"))
+    $("#label5").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>33%</p>"))
   } else if (X===17){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>16</p>"))
-    $("#label2").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>36</p>"))
-    $("#label3").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>43</p>"))
-    $("#label4").append($("<p class='legendLabel'>43-</p>" + "<p class='legendLabel'>54</p>"))
-    $("#label5").append($("<p class='legendLabel'>54-</p>" + "<p class='legendLabel'>76</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percent Households</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>16%</p>"))
+    $("#label2").append($("<p class='legendLabel'>16-</p>" + "<p class='legendLabel'>36%</p>"))
+    $("#label3").append($("<p class='legendLabel'>36-</p>" + "<p class='legendLabel'>43%</p>"))
+    $("#label4").append($("<p class='legendLabel'>43-</p>" + "<p class='legendLabel'>54%</p>"))
+    $("#label5").append($("<p class='legendLabel'>54-</p>" + "<p class='legendLabel'>76%</p>"))
   } else if (X===18){
     $(".legendLabel").remove();
-    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>4</p>"))
-    $("#label2").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>8</p>"))
-    $("#label3").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>11</p>"))
-    $("#label4").append($("<p class='legendLabel'>11-</p>" + "<p class='legendLabel'>13</p>"))
-    $("#label5").append($("<p class='legendLabel'>13-</p>" + "<p class='legendLabel'>20</p>"))
+    $("#break0").append($("<p class='legendLabel'>Percentage of Households with Children</p>"))
+    $("#label1").append($("<p class='legendLabel'>0-</p>" + "<p class='legendLabel'>4%</p>"))
+    $("#label2").append($("<p class='legendLabel'>4-</p>" + "<p class='legendLabel'>8%</p>"))
+    $("#label3").append($("<p class='legendLabel'>8-</p>" + "<p class='legendLabel'>11%</p>"))
+    $("#label4").append($("<p class='legendLabel'>11-</p>" + "<p class='legendLabel'>13%</p>"))
+    $("#label5").append($("<p class='legendLabel'>13-</p>" + "<p class='legendLabel'>20%</p>"))
   }
 }
 
