@@ -612,7 +612,7 @@ function getCensusDataPopulation(map){
            d > 5500  ? '#808080' :
            d > 2634   ? '#BFBFBF' :
            d <= 2634   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
      console.log (feature);
@@ -643,7 +643,7 @@ function getCensusDataAge(map){
            d > 34  ? '#808080' :
            d > 28   ? '#BFBFBF' :
            d <= 28   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -675,7 +675,7 @@ function getCensusDataWhite(map){
            d > 59  ? '#808080' :
            d > 36   ? '#BFBFBF' :
            d <= 36   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -706,7 +706,7 @@ function getCensusDataBlack(map){
            d > 13  ? '#808080' :
            d > 4   ? '#BFBFBF' :
            d <= 4   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -737,7 +737,7 @@ function getCensusDataAsian(map){
            d > 8  ? '#808080' :
            d > 3   ? '#BFBFBF' :
            d <= 3   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -768,7 +768,7 @@ function getCensusDataOtherRace(map){
            d > 6  ? '#808080' :
            d > 3   ? '#BFBFBF' :
            d <= 3   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -800,7 +800,7 @@ function getCensusDataIncome(map){
            d > 61660  ? '#808080' :
            d > 39710   ? '#BFBFBF' :
            d <= 39710   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -832,7 +832,7 @@ function getCensusDataDroveAlone(map){
            d > 36  ? '#808080' :
            d > 22   ? '#BFBFBF' :
            d <= 22   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -862,7 +862,7 @@ function getCensusDataCarpool(map){
            d > 4  ? '#808080' :
            d > 2   ? '#BFBFBF' :
            d <= 2   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -893,7 +893,7 @@ function getCensusDataPublicTransit(map){
            d > 3  ? '#808080' :
            d > 1   ? '#BFBFBF' :
            d <= 1   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -923,7 +923,7 @@ function getCensusDataBikes(map){
            d > 1.5  ? '#808080' :
            d > 0.5   ? '#BFBFBF' :
            d <= 0.5   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -954,7 +954,7 @@ function getCensusDataWalked(map){
            d > 2  ? '#808080' :
            d > 0.8   ? '#BFBFBF' :
            d <= 0.8   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -985,7 +985,7 @@ function getCensusDataOtherCommute(map){
            d > 0.37  ? '#808080' :
            d > 0.12   ? '#BFBFBF' :
            d <= 0.12   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -1016,7 +1016,7 @@ function getCensusDataWorkedFromHome(map){
            d > 2  ? '#808080' :
            d > 1   ? '#BFBFBF' :
            d <= 1   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -1049,7 +1049,7 @@ function getCensusDataPublicTransportation(map){
            d > 90  ? '#808080' :
            d > 85   ? '#BFBFBF' :
            d <= 80   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -1079,7 +1079,7 @@ function getCensusDataVehicle(map){
            d > 22  ? '#808080' :
            d > 19   ? '#BFBFBF' :
            d <= 19   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -1110,7 +1110,7 @@ function getCensusDataHouseholds(map){
            d > 36  ? '#808080' :
            d > 16   ? '#BFBFBF' :
            d <= 16   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
@@ -1140,7 +1140,7 @@ function getCensusDataKids(map){
            d > 8  ? '#808080' :
            d > 4   ? '#BFBFBF' :
            d <= 4   ? '#FFFFFF' :
-                      '#FFF';
+                      '#fcf8e8';
   }
   function style(feature) {
     return {
