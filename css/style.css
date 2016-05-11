@@ -38,7 +38,7 @@ header {
 /*Map*/
 #map {
 	height: 600px;
-	width: 80%;
+	width: 83%;
 	display: inline-block;
 	border-radius: 10px;
 }
@@ -184,17 +184,19 @@ select {
     margin-right: 5px;
     margin-left: 5px;
     background-color: #e3f9d2;
+    border-radius: 5px;
 }
 
 .sq {
     height: 40px;
     width: 40px;
     display: inline-block;
-    margin-left: 4px;
+    margin-left: 12%;
     margin-right: 4px;
     margin-top: 4px;
     margin-bottom: 4px;
     border: solid #509d15 1px;
+    border-radius: 5px;
 
 }
 
