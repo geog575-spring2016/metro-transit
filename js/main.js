@@ -15,8 +15,6 @@ var bikesLayer
 var walkedLayer
 var otherCommuteLayer
 var homeLayer
-var publicTransportationLayer
-var vehicleLayer
 var householdsLayer
 var kidsLayer
 var X = 0
@@ -444,18 +442,7 @@ function createMap(){
       getCensusDataOtherRace(map);
       
     });
-    $('#vehicle').click(function(){
-   
-      removeAllLayers(map);
-      getCensusDataVehicle(map);
-      
-    });
-    $('#public').click(function(){
-  
-      removeAllLayers(map);
-      getCensusDataPublicTransportation(map);
-      
-    });
+
     $('#alone').click(function(){
    
       removeAllLayers(map);
@@ -554,11 +541,8 @@ function removeAllLayers (map) {
     map.removeLayer(otherCommuteLayer);
   } else if (X===14){
     map.removeLayer(homeLayer);
-  } else if (X===15){
-    map.removeLayer(publicTransportationLayer);
-  } else if (X===16){
-    map.removeLayer(vehicleLayer);
-  } else if (X===17){
+  }
+   else if (X===17){
     map.removeLayer(householdsLayer);
   } else if (X===18){
     map.removeLayer(kidsLayer);
@@ -589,7 +573,7 @@ legend.onAdd = function (map) {
 var div = L.DomUtil.create('div', 'info legend');
 div.innerHTML = 
 
-'<select><option id="blank">Select a Variable</option><option id="demographic">Demographic</option><option id ="white">White</option><option id ="black">Black</option><option id ="asian">Asian</option><option id ="other">Other Race or Two or More Races</option><option id="commute">Commute Time</option><option id ="vehicle">Mean Travel Time to Work - Vehicle</option><option id ="public">Mean Travel Time To Work - Public Transit</option><option id="commutetype">Commute Type</option><option id ="alone">Drove Alone</option><option id ="carpool">Carpool</option><option id ="publictransit">Public Transit</option><option id ="bike">Bike</option><option id ="walked">Walked</option><option id ="alternate">Other Commute Type</option><option id ="home">Work From Home</option><option id="householdtype">Household Type</option><option id ="household">Households</option><option id ="kids">Kids</option><option id="misc">Other</option><option id="population">Population per Square Mile</option><option id="age">Median Age</option><option id ="income">Median Household Income</option></select>'
+'<select><option id="blank">Select a Variable</option><option id="demographic">Demographic</option><option id ="white">White</option><option id ="black">Black</option><option id ="asian">Asian</option><option id ="other">Other Race or Two or More Races</option><option id="commutetype">Commute Type</option><option id ="alone">Drove Alone</option><option id ="carpool">Carpool</option><option id ="publictransit">Public Transit</option><option id ="bike">Bike</option><option id ="walked">Walked</option><option id ="alternate">Other Commute Type</option><option id ="home">Work From Home</option><option id="householdtype">Household Type</option><option id ="household">Households</option><option id ="kids">Kids</option><option id="misc">Other</option><option id="population">Population per Square Mile</option><option id="age">Median Age</option><option id ="income">Median Household Income</option></select>'
 
 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 return div;
@@ -1037,67 +1021,6 @@ function getCensusDataWorkedFromHome(map){
 };
 
 // mean travel time to work data
-//public transportation breaks not showing up in QGIS, probably because of nulls?
-
-function getCensusDataPublicTransportation(map){
-  X=15
-  $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
-
-  function getColor(d) {
-    return d > 98 ? '#000000' : 
-           d > 95  ? '#404040' :
-           d > 90  ? '#808080' :
-           d > 85   ? '#BFBFBF' :
-           d <= 80   ? '#FFFFFF' :
-                      '#fcf8e8';
-  }
-  function style(feature) {
-    return {
-        fillColor: getColor(feature.properties.PublicTransportation),
-        weight: .5,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.6,
-        zIndex: 2
-    };
-  }
-
- publicTransportationLayer = L.geoJson(censusTracts, {
-  style: style,
-  onEachFeature: onEachFeature
-}).addTo(map).bringToBack();
-  });
-};
-
-function getCensusDataVehicle(map){
-  X=16
-  $.getJSON("data/CensusTracts/CensusTracts3.geojson",function(censusTracts){
-
-  function getColor(d) {
-    return d > 32 ? '#000000' : // high end of break 38
-           d > 25  ? '#404040' :
-           d > 22  ? '#808080' :
-           d > 19   ? '#BFBFBF' :
-           d <= 19   ? '#FFFFFF' :
-                      '#fcf8e8';
-  }
-  function style(feature) {
-    return {
-        fillColor: getColor(feature.properties.CarTruckVan),
-        weight: .5,
-        opacity: 1,
-        color: 'white',
-        fillOpacity: 0.6,
-        zIndex: 2
-    };
-  }
-
- vehicleLayer = L.geoJson(censusTracts, {
-  style: style,
-  onEachFeature: onEachFeature
-}).addTo(map).bringToBack();
-  });
-};
 // get data for household type
 
 function getCensusDataHouseholds(map){
