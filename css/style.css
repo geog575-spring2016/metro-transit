@@ -11,18 +11,6 @@ header {
 
 }
 
-h2 {
-	background-color: #61bf1a;
-	opacity: 0.8;
-	width: 75%;
-	color: white;
-	font-family: Georgia;
-}
-
-h3 {
-
-}
-
 #startrib {
 	padding-left: 2%;
 	max-width: 20%;
@@ -50,23 +38,42 @@ h3 {
 /*Map*/
 #map {
 	height: 600px;
-	width: 75%;
+	width: 80%;
 	display: inline-block;
 	border-radius: 10px;
+	border: 1px;
+	border-color: #61bf1a;
 }
 
-#panel {
-	height: 592px;
-	width: 24%;
+#legend {
+	height: 350px;
+	width: 15%;
 	display: inline-block;
 	border-radius: 10px;
 	border: solid #61bf1a 3px;
 	float: right;
 }
 
-#contextual {
-	height: 500px;
+#footer {
+	height: 30px;
+	width: 100%;
+	font-family: Georgia;
+	color: #404040;
+	margin: 15px;
+	font-size: 10pt;
+}
 
+#bottombar {
+	height: 30px;
+	background-color: #ccffcc;
+	border-radius: 10px;
+	font-family: Calibri;
+	text-align: center;
+	padding-top: .5%;
+}
+
+#context a:link {
+	color: #009933;
 }
 
 /*style dropdown */
@@ -170,82 +177,6 @@ select {
 }
 
 
-#footer {
-	height: 50px;
-	width: 100%;
-	font-family: Georgia;
-	color: #404040;
-	margin: 15px;
-	font-size: 10pt;
-
-}
-
-
-/*test menuSelector*/
-/*.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-*/
-/* Dropdown button on hover & focus */
-/*.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-*/
-/* The container <div> - needed to position the dropdown content */
-/*.dropdown {
-    position: relative;
-    display: inline-block;
-}*/
-
-/* Dropdown Content (Hidden by Default) */
-/*.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-*/
-/* Links inside the dropdown */
-/*.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-*/
-/* Change color of dropdown links on hover */
-/*.dropdown-content a:hover {background-color: #f1f1f1}
-*/
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-/*.show {display:block;}
-*/
-a:link{
-	color:;
-	font-family:;
-	font-size:;
-	text-decoration:; 
-}
-
-a:hover{
-	color: black;
-	}
-
-
-/*legend*/
-
-#legend {
-    height: 280px;
-    width: 150px;
-    border: solid #000 5px;
-    border-radius: 3px;
-}
-
 .break {
     height: 50px ;
     display: block;
@@ -266,7 +197,7 @@ a:hover{
     margin-top: 4px;
     margin-bottom: 4px;
     border: solid #509d15 1px;
-
+    border-radius: 5px;
 }
 
 .label {
