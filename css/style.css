@@ -235,3 +235,82 @@ a:link{
 a:hover{
 	color: black;
 	}
+
+
+/*legend*/
+
+#legend {
+    height: 280px;
+    width: 150px;
+    border: solid #000 5px;
+    border-radius: 3px;
+}
+
+.break {
+    height: 50px ;
+    display: block;
+    padding: 0px;
+    margin-top:5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #e3f9d2;
+}
+
+.sq {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: solid #509d15 1px;
+
+}
+
+.label {
+    height: 40px;
+    width: 90px;
+    display: inline;
+    float: right;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    position: absolute;
+    text-align: center;
+    line-height: 20px;
+
+}
+
+#sq1 {
+
+    background-color: #fff;
+}
+
+#sq2 {
+
+    background-color: #BFBFBF;
+}
+
+#sq3 {
+
+    background-color: #808080;
+}
+
+#sq4 {
+
+    background-color: #404040;
+}
+
+#sq5 {
+
+    background-color: #000;
+}
+
+.legendLabel {
+	font-family: georgia;
+	margin: 0;
+
+}
